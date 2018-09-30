@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>Yin_Java</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>login.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -12,17 +12,17 @@
   
   <servlet>
 		<!-- 声明Servlet对象 -->
-		<servlet-name>MyServlet</servlet-name><!-- 3 -->
+		<servlet-name>WebLogin</servlet-name><!-- 3 -->
 		<!-- 上面一句指定Servlet对象的名称 -->
-		<servlet-class>com.yin.xiao.servlet.MyServlet</servlet-class><!-- 4 -->
+		<servlet-class>com.yin.xiao.servlet.WebLogin</servlet-class><!-- 4 -->
 		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
-		<load-on-startup>1</load-on-startup>
+		<!-- <load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet-mapping>
 		<!-- 映射Servlet -->
-		<servlet-name>MyServlet</servlet-name><!-- 2 -->
+		<servlet-name>WebLogin</servlet-name><!-- 2 -->
 		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
-		<url-pattern>/MyServlet</url-pattern><!-- 1 -->
+		<url-pattern>/WebLogin</url-pattern><!-- 1 -->
 		<!-- 上面一句话用于映射访问URL -->
 	</servlet-mapping>
 	
