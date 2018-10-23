@@ -1,6 +1,6 @@
 package com.yin.xiao.bean;
 
-public class WeChatUser {
+public class WeChatInfo {
 	private Integer wechat_uid;
 	private String nickName;
 	private int gender;

@@ -13,5 +13,7 @@ public class TestMain {
 		admin.setAdmin_uid(3);
 		JSONObject json = JSONObject.fromObject(admin);
 		System.out.println(json.toString());
+		
+		
 	}
 }
