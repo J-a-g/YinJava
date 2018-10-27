@@ -1,0 +1,73 @@
+INSERT INTO wechat_user (nickName, gender, language) VALUE ('JAG111', '1','zh_CN')
+
+select * from wechat_user
+
+3张表的内连接查询
+select nickName,signature,phone_number,name, kitchen_url_1, kitchen_url_2 from wechat_user w, business b, kitchen k  
+where w.businessId=b.businessId && b.kitchenId=k.kitchenId
+
+select * from business,wechat_user 
+
+
+select * from admin where admin_username='root' && admin_pwd='888888'
+
+select * from wechat_info where uid is not NULL  ORDER BY wechat_uid DESC
+
+
+SELECT* from wechat_info ORDER BY wechat_uid DESC
+
+
+//分页
+
+SELECT TOP 5 * FROM wechat_info where id NOT IN(
+SELECT TOP 10 id FROM wechat_info ORDER BY ID asc) ORDER BY ID ASC
+
+
+select top 5 * from wechat_info 
+where wechat_uid not in (select top 10 id from wechat_info order by wechat_uid)
+order by wechat_uid
+
+select * from wechat_info ORDER BY wechat_uid asc limit 1, 10
+
+
+insert into wechat_info(nickName, gender, language, city, province, country, avatarUrl, signature)
+ VALUES ('浙江大学宁波理工学院','2', 'zh_CN', 'Ningbo', 'Zhejiang', 'China', 'xxxxxxx', 'eafjdaskfjdlakfjdlaf'),
+('引点','1', 'zh_CN', 'Beijiang', 'Beijian', 'China', 'xxxxxxx', 'eafjdaskfjdlakfjdlaf')
+
+
+insert into user(phone_number, address, integral, complain_num, shopping_num, comment_num, name, create_time)
+VALUES ('222222222', 'sljfdlkgafgjlsfjg slg','99', '7', '20', '5', '222222222', '2018-01-01 10:10:00'),
+('333333333', 'hello world','88', '10', '25', '20', '333333333', '2018-01-02 12:30:10'),
+('4444444444', '我喜欢什么啊','99', '7', '20', '5', '4444444444', '2018-01-03 10:10:00'),
+('55555555555', '我也不知道啊','88', '10', '25', '20', '55555555555', '2018-01-04 12:30:10'),
+('6666666666', '我喜欢析木吗','99', '7', '20', '5', '6666666666', '2018-01-05 11:11:11'),
+('77777777777', '嗯是的','88', '10', '25', '20', '77777777777', '2018-01-06 12:30:33'),
+('8888888888', '接下来我要这么做','99', '7', '20', '5', '8888888888', '2018-01-07 01:10:11'),
+('99999999999', '我也不知道啊，跟随心的感觉？？','88', '10', '25', '20', '99999999999', '2018-08-22 12:30:10')
+
+
+
+
+
+insert into business(phone_number, address, integral, complain_num, shopping_num, comment_num, name, create_time)
+VALUES ('222222222', 'sljfdlkgafgjlsfjg slg','99', '7', '20', '5', '222222222', '2018-01-01 10:10:00'),
+('333333333', 'hello world','88', '10', '25', '20', '333333333', '2018-01-02 12:30:10'),
+('4444444444', '我喜欢什么啊','99', '7', '20', '5', '4444444444', '2018-01-03 10:10:00'),
+('55555555555', '我也不知道啊','88', '10', '25', '20', '55555555555', '2018-01-04 12:30:10'),
+('6666666666', '我喜欢析木吗','99', '7', '20', '5', '6666666666', '2018-01-05 11:11:11'),
+('77777777777', '嗯是的','88', '10', '25', '20', '77777777777', '2018-01-06 12:30:33'),
+('8888888888', '接下来我要这么做','99', '7', '20', '5', '8888888888', '2018-01-07 01:10:11'),
+('99999999999', '我也不知道啊，跟随心的感觉？？','88', '10', '25', '20', '99999999999', '2018-08-22 12:30:10')
+
+
+
+
+
+
+
+
+
+
+
+
+
