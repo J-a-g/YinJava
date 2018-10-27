@@ -49,7 +49,7 @@
 					var obj1 = JSON.parse(JSON.stringify(data.field));
 					console.log("username ->" + obj1.username);
 					console.log("password ->" + obj1.password);
-					$.post("http://localhost:8080/Yin_Java/WebLogin", {
+					$.post("/Yin_Java/WebLogin", {
 						username : obj1.username,
 						password : obj1.password
 					}, function(data, status) {

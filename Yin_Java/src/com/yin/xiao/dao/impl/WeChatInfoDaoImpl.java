@@ -23,7 +23,7 @@ public class WeChatInfoDaoImpl implements WeChatInfoDao {
 	@Override
 	public List<WeChatInfo> getWeChatInfo(int index) {
 		// TODO Auto-generated method stub
-		int length = 6;
+		int length = 10;
 		int start = index * length;
 		List<WeChatInfo> list = new ArrayList<>();
 		Connection conn = null;

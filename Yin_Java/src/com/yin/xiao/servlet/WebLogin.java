@@ -1,7 +1,6 @@
 package com.yin.xiao.servlet;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
@@ -10,13 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yin.xiao.SysConfig;
 import com.yin.xiao.bean.Response;
 import com.yin.xiao.control.AdminControl;
 import com.yin.xiao.control.impl.AdminControlImpl;
 
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
-import sun.management.resources.agent;
 
 public class WebLogin extends HttpServlet {
 
@@ -40,9 +38,9 @@ public class WebLogin extends HttpServlet {
 		String password = req.getParameter("password");
 		JSONObject userJson;
 		if (adminControl.login(username, password)) {
-			userJson = JSONObject.fromObject(new Response("0000", "验证成功", "", "WebLogin"));
+			userJson = JSONObject.fromObject(new Response(SysConfig.SUC_CODE, "验证成功", "", "WebLogin"));
 		} else {
-			userJson = JSONObject.fromObject(new Response("1001", "验证失败", "", "WebLogin"));
+			userJson = JSONObject.fromObject(new Response(SysConfig.ERR_CODE, "验证失败", "", "WebLogin"));
 		}
 		System.out.println("json---> " + userJson.toString());
 		PrintWriter out = resp.getWriter();
