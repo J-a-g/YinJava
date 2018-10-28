@@ -23,10 +23,8 @@
   </div>
 </script>
 
-	<script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs" lay-event="detail">详情</a>
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="recover">恢复</a>
 </script>
 
 
@@ -40,7 +38,7 @@
 
 			table.render({
 				elem : '#test',
-				url : '/Yin_Java/WeChatInfoSvl',
+				url : '/Yin_Java/business_recover_svl',
 				method : 'post',
 				toolbar : '#toolbarDemo',
 				cols : [ [ {
@@ -64,7 +62,7 @@
 					title : '性别',
 					sort : true,
 					templet : '#sexTpl'
-				},{
+				}, {
 					field : 'province',
 					//	width : 80,
 					title : '省份',
@@ -78,7 +76,7 @@
 					//	width : 80,
 					title : '地址',
 					sort : true
-				}, {
+				},  {
 					field : 'signature',
 					title : '签名',
 				//minWidth : 100
@@ -127,84 +125,28 @@
 			table.on('tool(test)', function(obj) {
 				var data = obj.data;
 				//console.log(data)
-				if (obj.event === 'del') {
-					layer.confirm('真的删除行么', function(index) {
+			if (obj.event === 'recover') {
+					layer.confirm('是否确认恢复该用户！', function(index) {
 						obj.del();
 						layer.close(index);
-						$.post("/Yin_Java/member_del_svl", {
-							uid : data.uid
+						$.post("/Yin_Java/business_recover_click_svl", {
+							businessId : data.businessId
 						}, function(data, status) {
 							if (status) {
 								var obj = JSON.parse(data);
 								if (obj.errCode == "0000") {
-									layer.alert("删除成功");
+									layer.alert("恢复成功");
 								} else {
-									layer.alert("删除失败");
+									layer.alert("恢复失败");
 								}
 							} else {
 								layer.alert(fail);
 							}
 						});
 					});
-				} else if (obj.event === 'detail') {
-					layer.prompt({
-						formType : 2,
-						value : data.email
-					}, function(value, index) {
-						obj.update({
-							email : value
-						});
-						layer.close(index);
-					});
-				} else if (obj.event === 'edit') {
-					layer.confirm('修改用户状态', {
-						btn : [ '正常', '注销', '停用' ] //可以无限个按钮
-						,
-						btn3 : function(index, layero) {
-							//按钮【按钮三】的回调
-							alert("停用按钮");
-							obj.update({
-								status : "被管理员停用"
-							});
-							layer.close(index);
-							checkStatus(2, data.uid);
-						}
-					}, function(index, layero) {
-						//按钮【按钮一】的回调
-						alert("正常按钮");
-						obj.update({
-							status : "正常"
-						});
-						layer.close(index);
-						checkStatus(0, data.uid);
-					}, function(index) {
-						alert("注销按钮");
-						obj.update({
-							status : "用户注销"
-						});
-						layer.close(index);
-						checkStatus(1, data.uid);
-					});
 				}
 			});
 		});
-		function checkStatus(status, uid) {
-			$.post("/Yin_Java/business_list_status_svl", {
-				uid : uid,
-				status : status
-			}, function(data, status) {
-				if (status) {
-					var obj = JSON.parse(data);
-					if (obj.errCode == "0000") {
-						layer.alert("修改成功");
-					} else {
-						layer.alert("修改失败");
-					}
-				} else {
-					layer.alert(fail);
-				}
-			});
-		}
 	</script>
 	<script type="text/html" id="sexTpl">
   {{#  if(d.gender === '女'){ }}

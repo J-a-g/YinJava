@@ -18,7 +18,7 @@ import com.yin.xiao.control.impl.WeChatInfoControlImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class WeChatInfoSvl extends HttpServlet{
+public class wechatinfo_isdelete_svl extends HttpServlet{
 	
 	private final String TAG = "WeChatInfo Servlet";
 	private WeChatInfoControl weChatInfoControl = new WeChatInfoControlImpl();
@@ -28,15 +28,6 @@ public class WeChatInfoSvl extends HttpServlet{
 		// TODO Auto-generated method stub
 //		super.doGet(req, resp);
 		System.out.println(TAG + " get...");
-
-		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=UTF-8");
-
-		String page = req.getParameter("page");// 接受用户的参数
-		String limit = req.getParameter("limit");
-		System.out.println("page -----> " + page + " limit ---> " + limit);
-		List<MemberBean> list = weChatInfoControl.getMemberBean(Integer.parseInt(page) - 1);
-		
 	}
 	
 	@Override
@@ -49,7 +40,7 @@ public class WeChatInfoSvl extends HttpServlet{
 		String page = req.getParameter("page");// 接受用户的参数
 		String limit = req.getParameter("limit");
 		System.out.println("page -----> " + page + " limit ---> " + limit);
-		List<MemberBean> list = weChatInfoControl.getMemberBean(Integer.parseInt(page) - 1);
+		List<MemberBean> list = weChatInfoControl.getMemberBeanBydelete(Integer.parseInt(page) - 1);
 		JSONArray jsonArray = JSONArray.fromObject(list);
 		System.out.println("jsonArray ----> " + jsonArray.toString());
 	//	JSONObject jsonObject = JSONObject.fromObject(new TableResponse(0, 1000, "", list));

@@ -6,13 +6,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yin.xiao.bean.MemberBean;
 import com.yin.xiao.bean.WeChatInfo;
 import com.yin.xiao.dao.WeChatInfoDao;
 import com.yin.xiao.util.DBUtil;
 
 import javafx.scene.shape.Arc;
+import sun.security.util.Length;
 
 public class WeChatInfoDaoImpl implements WeChatInfoDao {
+
+	private int length = 10;
 
 	@Override
 	public void insertWeChatUser(WeChatInfo weChatUser) {
@@ -21,40 +25,157 @@ public class WeChatInfoDaoImpl implements WeChatInfoDao {
 	}
 
 	@Override
-	public List<WeChatInfo> getWeChatInfo(int index) {
+	public List<MemberBean> getMemberBeansByDelete(int index, int del) {
 		// TODO Auto-generated method stub
-		int length = 10;
 		int start = index * length;
-		List<WeChatInfo> list = new ArrayList<>();
+		List<MemberBean> list = new ArrayList<>();
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			// select * from wechat_info ORDER BY wechat_uid asc limit 1, 10
-			String sql = "select * from wechat_info where uid is not NULL ORDER BY wechat_uid asc limit " + start + ", "
+			String sql = "select wechat_uid, w.uid, w.businessId,nickName, gender, country,province,"
+					+ " city, signature, phone_number, address, del, create_time, status from wechat_info w, "
+					+ "user u where w.uid=u.uid && u.del = " + del + " ORDER BY wechat_uid asc limit " + start + ", "
 					+ length;
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			// ResultSetMetaData md = rs.getMetaData();// 结果集(rs)的结构信息，比如字段数、字段名等。
 			// int columnCount = md.getColumnCount();// 取得查询出来的字段个数
 			while (rs.next()) {// 迭代rs
-				WeChatInfo weChatInfo = new WeChatInfo();
-				weChatInfo.setAvatarUrl(rs.getString("avatarUrl"));
-				weChatInfo.setBusinessId(rs.getInt("businessId"));
-				weChatInfo.setCity(rs.getString("city"));
-				weChatInfo.setCountry(rs.getString("country"));
-				weChatInfo.setGender(rs.getInt("gender"));
-				weChatInfo.setLanguage(rs.getString("language"));
-				weChatInfo.setNickName(rs.getString("nickName"));
-				weChatInfo.setProvince(rs.getString("province"));
-				weChatInfo.setSignature(rs.getString("signature"));
-				weChatInfo.setUid(rs.getInt("uid"));
-				weChatInfo.setWechat_uid(rs.getInt("wechat_uid"));
-				list.add(weChatInfo);
+				MemberBean memberBean = new MemberBean();
+				memberBean.setAddress(rs.getString("address"));
+				memberBean.setBusinessId(rs.getInt("businessId"));
+				memberBean.setCountry(rs.getString("country"));
+				memberBean.setCreate_time(rs.getString("create_time"));
+				if (rs.getString("gender").equals("1")) {
+					memberBean.setGender("男");
+				} else {
+					memberBean.setGender("女");
+				}
+				if (rs.getInt("status") == 0) {
+					memberBean.setStatus("正常");
+				} else if (rs.getInt("status") == 1) {
+					memberBean.setStatus("用户注销");
+				} else if (rs.getInt("status") == 2) {
+					memberBean.setStatus("被管理员停用");
+				}
+				memberBean.setNickName(rs.getString("nickName"));
+				memberBean.setPhone_number(rs.getString("phone_number"));
+				memberBean.setProvince(rs.getString("province"));
+				memberBean.setSignature(rs.getString("signature"));
+				memberBean.setUid(rs.getInt("uid"));
+				memberBean.setCity(rs.getString("city"));
+				memberBean.setWechat_uid(rs.getInt("wechat_uid"));
+				list.add(memberBean);
 			}
-			DBUtil.close(conn);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		} finally {
+			DBUtil.close(conn);
+		}
+		return list;
+	}
+
+	@Override
+	public List<MemberBean> getBusinessByDelete(int index, int del) {
+		int start = index * length;
+		List<MemberBean> list = new ArrayList<>();
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			String sql = "select wechat_uid, w.uid, w.businessId,nickName, gender, country,province,"
+					+ " city, signature, phone_number, address, del, create_time, status from wechat_info w, "
+					+ "business b where w.businessId = b.businessId && b.del = " + del + " && b.status != 3"
+							+ " ORDER BY wechat_uid asc limit " + start + ", " + length;
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			// ResultSetMetaData md = rs.getMetaData();// 结果集(rs)的结构信息，比如字段数、字段名等。
+			// int columnCount = md.getColumnCount();// 取得查询出来的字段个数
+			while (rs.next()) {// 迭代rs
+				MemberBean memberBean = new MemberBean();
+				memberBean.setAddress(rs.getString("address"));
+				memberBean.setBusinessId(rs.getInt("businessId"));
+				memberBean.setCountry(rs.getString("country"));
+				memberBean.setCreate_time(rs.getString("create_time"));
+				if (rs.getString("gender").equals("1")) {
+					memberBean.setGender("男");
+				} else {
+					memberBean.setGender("女");
+				}
+				if (rs.getInt("status") == 0) {
+					memberBean.setStatus("正常");
+				} else if (rs.getInt("status") == 1) {
+					memberBean.setStatus("用户注销");
+				} else if (rs.getInt("status") == 2) {
+					memberBean.setStatus("被管理员停用");
+				}
+				memberBean.setNickName(rs.getString("nickName"));
+				memberBean.setPhone_number(rs.getString("phone_number"));
+				memberBean.setProvince(rs.getString("province"));
+				memberBean.setSignature(rs.getString("signature"));
+				memberBean.setUid(rs.getInt("uid"));
+				memberBean.setCity(rs.getString("city"));
+				memberBean.setWechat_uid(rs.getInt("wechat_uid"));
+				list.add(memberBean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(conn);
+		}
+		return list;
+	}
+
+	@Override
+	public List<MemberBean> getBusinessByApply(int index) {
+		int start = index * length;
+		List<MemberBean> list = new ArrayList<>();
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			String sql = "select wechat_uid, w.uid, w.businessId,nickName, gender, country,province,"
+					+ " city, signature, phone_number, address, del, create_time, status from wechat_info w, "
+					+ "business b where w.businessId = b.businessId && b.del = 0 && b.status = 3"
+							+ " ORDER BY wechat_uid asc limit " + start + ", " + length;
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			// ResultSetMetaData md = rs.getMetaData();// 结果集(rs)的结构信息，比如字段数、字段名等。
+			// int columnCount = md.getColumnCount();// 取得查询出来的字段个数
+			while (rs.next()) {// 迭代rs
+				MemberBean memberBean = new MemberBean();
+				memberBean.setAddress(rs.getString("address"));
+				memberBean.setBusinessId(rs.getInt("businessId"));
+				memberBean.setCountry(rs.getString("country"));
+				memberBean.setCreate_time(rs.getString("create_time"));
+				if (rs.getString("gender").equals("1")) {
+					memberBean.setGender("男");
+				} else {
+					memberBean.setGender("女");
+				}
+				if (rs.getInt("status") == 0) {
+					memberBean.setStatus("正常");
+				} else if (rs.getInt("status") == 1) {
+					memberBean.setStatus("用户注销");
+				} else if (rs.getInt("status") == 2) {
+					memberBean.setStatus("被管理员停用");
+				}else if(rs.getInt("status") == 3) {
+					memberBean.setStatus("待审核");
+				}
+				memberBean.setNickName(rs.getString("nickName"));
+				memberBean.setPhone_number(rs.getString("phone_number"));
+				memberBean.setProvince(rs.getString("province"));
+				memberBean.setSignature(rs.getString("signature"));
+				memberBean.setUid(rs.getInt("uid"));
+				memberBean.setCity(rs.getString("city"));
+				memberBean.setWechat_uid(rs.getInt("wechat_uid"));
+				list.add(memberBean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(conn);
 		}
 		return list;
 	}

@@ -40,7 +40,7 @@
 
 			table.render({
 				elem : '#test',
-				url : '/Yin_Java/WeChatInfoSvl',
+				url : '/Yin_Java/business_list_svl',
 				method : 'post',
 				toolbar : '#toolbarDemo',
 				cols : [ [ {
@@ -78,7 +78,7 @@
 					//	width : 80,
 					title : '地址',
 					sort : true
-				}, {
+				},  {
 					field : 'signature',
 					title : '签名',
 				//minWidth : 100
@@ -131,8 +131,8 @@
 					layer.confirm('真的删除行么', function(index) {
 						obj.del();
 						layer.close(index);
-						$.post("/Yin_Java/member_del_svl", {
-							uid : data.uid
+						$.post("/Yin_Java/business_list_del_svl", {
+							businessId : data.businessId
 						}, function(data, status) {
 							if (status) {
 								var obj = JSON.parse(data);
@@ -167,7 +167,7 @@
 								status : "被管理员停用"
 							});
 							layer.close(index);
-							checkStatus(2, data.uid);
+							checkStatus(2, data.businessId);
 						}
 					}, function(index, layero) {
 						//按钮【按钮一】的回调
@@ -176,21 +176,21 @@
 							status : "正常"
 						});
 						layer.close(index);
-						checkStatus(0, data.uid);
+						checkStatus(0, data.businessId);
 					}, function(index) {
 						alert("注销按钮");
 						obj.update({
 							status : "用户注销"
 						});
 						layer.close(index);
-						checkStatus(1, data.uid);
+						checkStatus(1, data.businessId);
 					});
 				}
 			});
 		});
-		function checkStatus(status, uid) {
+		function checkStatus(status, businessId) {
 			$.post("/Yin_Java/business_list_status_svl", {
-				uid : uid,
+				businessId : businessId,
 				status : status
 			}, function(data, status) {
 				if (status) {

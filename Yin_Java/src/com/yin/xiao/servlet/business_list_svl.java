@@ -18,25 +18,16 @@ import com.yin.xiao.control.impl.WeChatInfoControlImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class WeChatInfoSvl extends HttpServlet{
+public class business_list_svl extends HttpServlet{
 	
-	private final String TAG = "WeChatInfo Servlet";
+	private final String TAG = "business_list_svl";
 	private WeChatInfoControl weChatInfoControl = new WeChatInfoControlImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		super.doGet(req, resp);
-		System.out.println(TAG + " get...");
-
-		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=UTF-8");
-
-		String page = req.getParameter("page");// 接受用户的参数
-		String limit = req.getParameter("limit");
-		System.out.println("page -----> " + page + " limit ---> " + limit);
-		List<MemberBean> list = weChatInfoControl.getMemberBean(Integer.parseInt(page) - 1);
-		
+		System.out.println(TAG + " get...");	
 	}
 	
 	@Override
@@ -48,10 +39,8 @@ public class WeChatInfoSvl extends HttpServlet{
 		resp.setContentType("text/html;charset=UTF-8");
 		String page = req.getParameter("page");// 接受用户的参数
 		String limit = req.getParameter("limit");
-		System.out.println("page -----> " + page + " limit ---> " + limit);
-		List<MemberBean> list = weChatInfoControl.getMemberBean(Integer.parseInt(page) - 1);
+		List<MemberBean> list = weChatInfoControl.getBusiness(Integer.parseInt(page) - 1);
 		JSONArray jsonArray = JSONArray.fromObject(list);
-		System.out.println("jsonArray ----> " + jsonArray.toString());
 	//	JSONObject jsonObject = JSONObject.fromObject(new TableResponse(0, 1000, "", list));
 		JSONObject jsonObject = JSONObject.fromObject(new Test2Response<MemberBean>(0, "成功", 1000, list));
 		System.out.println("json---> " + jsonObject.toString());
@@ -66,14 +55,14 @@ public class WeChatInfoSvl extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		// super.init(config);
-		System.out.println("WeChatInfo init...");
+		System.out.println("business_list_svl init...");
 	}
 	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 		super.destroy();
-		System.out.println("WeChatInfo Servlet destroy");
+		System.out.println(TAG + " destroy");
 	}
 
 }
