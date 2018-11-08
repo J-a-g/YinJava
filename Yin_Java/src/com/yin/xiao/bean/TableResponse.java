@@ -2,58 +2,65 @@ package com.yin.xiao.bean;
 
 import java.util.List;
 
-public class TableResponse {
+public class TableResponse<T> {
+	private int errCode;
+	private String errMsg;
+	private int total;
+	private List<T> data;
+//	private String interFace;
 
-	private int code;
-	private int count;
-	private String msg;
-
-	private List<WeChatInfo> data;
-	
-	
-	public TableResponse(int code, int count, String msg, List<WeChatInfo> data) {
-		// TODO Auto-generated constructor stub
-		this.code = code;
-		this.count = count;
-		this.msg = msg;
+	public TableResponse(int errCode, String errMsg, int total, List<T> data) {
+		this.errCode = errCode;
+		this.errMsg = errMsg;
+		this.total = total;
 		this.data = data;
+//		this.interFace = interFace;
 	}
 
-	public int getCode() {
-		return code;
+	public int getTotal() {
+		return total;
 	}
 
-	public void setCode(int code) {
-		this.code = code;
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
-	public int getCount() {
-		return count;
+	public int getErrCode() {
+		return errCode;
 	}
 
-	public void setCount(int count) {
-		this.count = count;
+	public void setErrCode(int errCode) {
+		this.errCode = errCode;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getErrMsg() {
+		return errMsg;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setErrMsg(String errMsg) {
+		this.errMsg = errMsg;
 	}
 
-	public List<WeChatInfo> getData() {
+	public List<T> getData() {
 		return data;
 	}
 
-	public void setData(List<WeChatInfo> data) {
+	public void setData(List<T> data) {
 		this.data = data;
 	}
 
+//	public String getInterFace() {
+//		return interFace;
+//	}
+//
+//	public void setInterFace(String interFace) {
+//		this.interFace = interFace;
+//	}
+
 	@Override
 	public String toString() {
-		return "TestResponse [code=" + code + ", count=" + count + ", msg=" + msg + ", data=" + data + "]";
+		return "TableResponse [errCode=" + errCode + ", errMsg=" + errMsg + ", total=" + total + ", data=" + data
+				+ ", interFace=]";
 	}
 
 }

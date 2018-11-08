@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yin.xiao.SysConfig;
 import com.yin.xiao.bean.MemberBean;
 import com.yin.xiao.bean.Response;
-import com.yin.xiao.bean.Test2Response;
+import com.yin.xiao.bean.TableResponse;
 import com.yin.xiao.control.BusinessControl;
 import com.yin.xiao.control.UserControl;
 import com.yin.xiao.control.WeChatInfoControl;
@@ -44,7 +44,7 @@ public class business_recover_svl extends HttpServlet{
 		resp.setContentType("text/html;charset=UTF-8");
 		String page = req.getParameter("page");// 接受用户的参数
 		List<MemberBean> list = weChatInfoControl.getBusinessIsDel(Integer.parseInt(page) - 1);
-		JSONObject jsonObject = JSONObject.fromObject(new Test2Response<MemberBean>(0, "成功", 1000, list));
+		JSONObject jsonObject = JSONObject.fromObject(new TableResponse<MemberBean>(0, "成功", 1000, list));
 		System.out.println("json---> " + jsonObject.toString());
 		PrintWriter out = resp.getWriter();	
 		out.println(jsonObject.toString());

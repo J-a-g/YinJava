@@ -40,54 +40,54 @@
 
 			table.render({
 				elem : '#test',
-				url : '/Yin_Java/WeChatInfoSvl',
+				url : '/Yin_Java/order_list_svl',
 				method : 'post',
 				toolbar : '#toolbarDemo',
 				cols : [ [ {
 					type : 'radio'
 				}, {
-					field : 'wechat_uid',
+					field : 'orderId',
 					//	width : 80,
 					title : 'ID',
 					sort : true
 				}, {
-					field : 'nickName',
+					field : 'order_sn',
 					//	width : 80,
-					title : '用户名'
+					title : '订单编号'
 				}, {
-					field : 'phone_number',
+					field : 'kitchenName',
 					//	width : 80,
-					title : '手机号'
+					title : '商户名'
 				}, {
-					field : 'gender',
+					field : 'business_nickName',
 					//	width : 80,
-					title : '性别',
+					title : '小厨Name',
 					sort : true,
-					templet : '#sexTpl'
+					//templet : '#sexTpl'
 				},{
-					field : 'province',
+					field : 'user_nickName',
 					//	width : 80,
-					title : '省份',
+					title : '消费用户',
 					sort : true
 				},  {
-					field : 'city',
+					field : 'order_price',
 					//width : 80,
-					title : '城市'
+					title : '价格'
 				}, {
-					field : 'address',
+					field : 'str_order_status',
 					//	width : 80,
-					title : '地址',
+					title : '订单状态',
 					sort : true
 				}, {
-					field : 'signature',
-					title : '签名',
+					field : 'str_pay_status',
+					title : '支付状态',
 				//minWidth : 100
 				}, {
-					field : 'status',
-					title : '状态',
+					field : 'str_pay_type',
+					title : '支付方式',
 					//minWidth : 100
 					sort : true,
-					templet : '#statusTpl'
+					//templet : '#statusTpl'
 				}, {
 					field : 'create_time',
 					title : '时间',

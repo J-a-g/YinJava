@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yin.xiao.bean.Test2Response;
+import com.yin.xiao.bean.TableResponse;
 import com.yin.xiao.bean.MemberBean;
 import com.yin.xiao.control.WeChatInfoControl;
 import com.yin.xiao.control.impl.WeChatInfoControlImpl;
@@ -42,7 +42,7 @@ public class business_list_svl extends HttpServlet{
 		List<MemberBean> list = weChatInfoControl.getBusiness(Integer.parseInt(page) - 1);
 		JSONArray jsonArray = JSONArray.fromObject(list);
 	//	JSONObject jsonObject = JSONObject.fromObject(new TableResponse(0, 1000, "", list));
-		JSONObject jsonObject = JSONObject.fromObject(new Test2Response<MemberBean>(0, "成功", 1000, list));
+		JSONObject jsonObject = JSONObject.fromObject(new TableResponse<MemberBean>(0, "成功", 1000, list));
 		System.out.println("json---> " + jsonObject.toString());
 		PrintWriter out = resp.getWriter();	
 		out.println(jsonObject.toString());
