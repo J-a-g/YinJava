@@ -32,17 +32,213 @@
 
 	<servlet>
 		<!-- 声明Servlet对象 -->
-		<servlet-name>WeChatInfo</servlet-name><!-- 3 -->
+		<servlet-name>WeChatInfoSvl</servlet-name><!-- 3 -->
 		<!-- 上面一句指定Servlet对象的名称 -->
-		<servlet-class>com.yin.xiao.servlet.WeChatInfo</servlet-class><!-- 4 -->
+		<servlet-class>com.yin.xiao.servlet.WeChatInfoSvl</servlet-class><!-- 4 -->
 		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
 		<!-- <load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet-mapping>
 		<!-- 映射Servlet -->
-		<servlet-name>WeChatInfo</servlet-name><!-- 2 -->
+		<servlet-name>WeChatInfoSvl</servlet-name><!-- 2 -->
 		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
-		<url-pattern>/WeChatInfo</url-pattern><!-- 1 -->
+		<url-pattern>/WeChatInfoSvl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>member_del_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.member_del_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>member_del_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/member_del_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>member_status_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.member_status_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>member_status_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/member_status_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>member_recover_user_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.member_recover_user_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>member_recover_user_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/member_recover_user_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>wechatinfo_isdelete_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.wechatinfo_isdelete_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>wechatinfo_isdelete_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/wechatinfo_isdelete_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>business_list_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.business_list_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>business_list_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/business_list_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>business_list_del_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.business_list_del_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>business_list_del_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/business_list_del_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>business_list_status_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.business_list_status_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>business_list_status_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/business_list_status_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>business_recover_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.business_recover_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>business_recover_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/business_recover_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>business_recover_click_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.business_recover_click_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>business_recover_click_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/business_recover_click_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>business_apply_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.business_apply_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>business_apply_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/business_apply_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+		
+	<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>business_apply_click_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.business_apply_click_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>business_apply_click_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/business_apply_click_svl</url-pattern><!-- 1 -->
+		<!-- 上面一句话用于映射访问URL -->
+	</servlet-mapping>
+	
+		<servlet>
+		<!-- 声明Servlet对象 -->
+		<servlet-name>order_list_svl</servlet-name><!-- 3 -->
+		<!-- 上面一句指定Servlet对象的名称 -->
+		<servlet-class>com.yin.xiao.servlet.order_list_svl</servlet-class><!-- 4 -->
+		<!-- 上面一句指定Servlet对象的完整位置，包含包名和类名 -->
+		<!-- <load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<!-- 映射Servlet -->
+		<servlet-name>order_list_svl</servlet-name><!-- 2 -->
+		<!--<servlet-name>与上面<Servlet>标签的<servlet-name>元素相对应，不可以随便起名 -->
+		<url-pattern>/order_list_svl</url-pattern><!-- 1 -->
 		<!-- 上面一句话用于映射访问URL -->
 	</servlet-mapping>
 </web-app>

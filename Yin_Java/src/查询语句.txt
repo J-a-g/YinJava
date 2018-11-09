@@ -3,8 +3,20 @@ INSERT INTO wechat_user (nickName, gender, language) VALUE ('JAG111', '1','zh_CN
 select * from wechat_user
 
 3张表的内连接查询
-select nickName,signature,phone_number,name, kitchen_url_1, kitchen_url_2 from wechat_user w, business b, kitchen k  
+select nickName,signature,phone_number,name, kitchen_url_1, kitchen_url_2 from wechat_info w, business b, kitchen k  
 where w.businessId=b.businessId && b.kitchenId=k.kitchenId
+
+
+select wechat_uid, w.uid, w.businessId,nickName, gender, country,province, city, signature, phone_number, address, del, create_time 
+from wechat_info w, business b where w.businessId=b.businessId && b.del != 1 ORDER BY wechat_uid asc limit 0, 5
+
+//查询3张表
+select order_sn, mark, complete_time, signature, w.wechat_uid, phone_number, address from `order` o, wechat_info w, business b where o.wechat_uid = w.wechat_uid && w.businessId=b.businessId
+
+//查询订单数据
+select orderId, order_sn, mark,order_price,order_status,pay_status,pay_type,o.create_time, w.nickName, w2.nickName, kitchenName
+from `order` o, wechat_info w, wechat_info w2, kitchen k, business b where o.wechat_uid_user = w.wechat_uid && o.wechat_uid_business = w2.wechat_uid && k.businessId = b.businessId && o.del = 0
+
 
 select * from business,wechat_user 
 
@@ -16,8 +28,11 @@ select * from wechat_info where uid is not NULL  ORDER BY wechat_uid DESC
 
 SELECT* from wechat_info ORDER BY wechat_uid DESC
 
+update user set del = 1, status = 2 where uid = 6
+
 
 //分页
+//http://paq4vnk6w.bkt.clouddn.com/1.jpg
 
 SELECT TOP 5 * FROM wechat_info where id NOT IN(
 SELECT TOP 10 id FROM wechat_info ORDER BY ID asc) ORDER BY ID ASC
@@ -30,9 +45,25 @@ order by wechat_uid
 select * from wechat_info ORDER BY wechat_uid asc limit 1, 10
 
 
+
+
+
+
 insert into wechat_info(nickName, gender, language, city, province, country, avatarUrl, signature)
  VALUES ('浙江大学宁波理工学院','2', 'zh_CN', 'Ningbo', 'Zhejiang', 'China', 'xxxxxxx', 'eafjdaskfjdlakfjdlaf'),
 ('引点','1', 'zh_CN', 'Beijiang', 'Beijian', 'China', 'xxxxxxx', 'eafjdaskfjdlakfjdlaf')
+
+
+insert into goods(goods_name, goods_price, goods_desc, goods_img_1, goods_img_2, goods_img_3, day_max, day_surplus, goods_detail_desc, create_time)
+values ('水煮鱼', 60.50, '水煮活鱼', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 10, 10, '非常好吃的鱼', '2018-01-01 10:10:00'),
+('麻辣香锅', 1.50, 'JAG麻辣香锅', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 10, 8, '非常好吃的麻辣香锅', '2018-01-02 11:11:11'),
+('甜筒', 0.50, 'JAG甜筒', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 10, 7, '非常好吃的甜筒', '2018-02-02 12:12:02'),
+('苦瓜炒蛋', 6.50, 'JAG苦瓜炒蛋', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 10, 6, '非常好吃的苦瓜炒蛋', '2018-10-05 13:13:00'),
+('黑暗料理', 5.00, 'JAG黑暗料理', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 'http://paq4vnk6w.bkt.clouddn.com/1.jpg', 10, 5, '非常好吃的黑暗料理', '2018-05-08 10:10:00')
+
+
+insert into `order`(mark, create_time, complete_time, close_time, time, order_price, wechat_uid, kitchenId)
+values ('mark22222222222222222', '2018-10-29 12:00:11', '2018-10-29 12:30:11', '', 30, 88.80, 19, 3)
 
 
 insert into user(phone_number, address, integral, complain_num, shopping_num, comment_num, name, create_time)

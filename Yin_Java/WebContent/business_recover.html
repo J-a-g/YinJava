@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>欢迎页面-X-admin2.0</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="./lib/layui/css/layui.css" media="all">
+<script type="text/javascript"
+	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="./lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/xadmin.js"></script>
+</head>
+<body>
+
+	<table class="layui-hide" id="test" lay-filter="test"></table>
+
+	<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+  </div>
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="recover">恢复</a>
+</script>
+
+
+	<script type="text/javascript" src="./lib/layui/layui.js"
+		charset="utf-8"></script>
+	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+	<script>
+		layui.use('table', function() {
+			var table = layui.table;
+
+			table.render({
+				elem : '#test',
+				url : '/Yin_Java/business_recover_svl',
+				method : 'post',
+				toolbar : '#toolbarDemo',
+				cols : [ [ {
+					type : 'radio'
+				}, {
+					field : 'wechat_uid',
+					//	width : 80,
+					title : 'ID',
+					sort : true
+				}, {
+					field : 'nickName',
+					//	width : 80,
+					title : '用户名'
+				}, {
+					field : 'phone_number',
+					//	width : 80,
+					title : '手机号'
+				}, {
+					field : 'gender',
+					//	width : 80,
+					title : '性别',
+					sort : true,
+					templet : '#sexTpl'
+				}, {
+					field : 'province',
+					//	width : 80,
+					title : '省份',
+					sort : true
+				},  {
+					field : 'city',
+					//width : 80,
+					title : '城市'
+				}, {
+					field : 'address',
+					//	width : 80,
+					title : '地址',
+					sort : true
+				},  {
+					field : 'signature',
+					title : '签名',
+				//minWidth : 100
+				}, {
+					field : 'status',
+					title : '状态',
+					//minWidth : 100
+					sort : true,
+					templet : '#statusTpl'
+				}, {
+					field : 'create_time',
+					title : '时间',
+					//minWidth : 100
+					sort : true
+				}, {
+					fixed : 'right',
+					title : '操作',
+					toolbar : '#barDemo',
+				//	width : 150
+				} ] ],
+				page : true,
+				parseData : function(res) { //res 即为原始返回的数据
+					return {
+						"code" : res.errCode, //解析接口状态
+						"msg" : res.errMsg, //解析提示文本
+						"count" : res.total, //解析数据长度
+						"data" : res.data
+					//解析数据列表
+					};
+				}
+			});
+
+			//头工具栏事件
+			table.on('toolbar(test)', function(obj) {
+				var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
+				switch (obj.event) {
+				case 'getCheckData':
+					var data = checkStatus.data; //获取选中行数据
+					layer.alert(JSON.stringify(data));
+					break;
+				}
+				;
+			});
+
+			//监听行工具事件
+			table.on('tool(test)', function(obj) {
+				var data = obj.data;
+				//console.log(data)
+			if (obj.event === 'recover') {
+					layer.confirm('是否确认恢复该用户！', function(index) {
+						obj.del();
+						layer.close(index);
+						$.post("/Yin_Java/business_recover_click_svl", {
+							businessId : data.businessId
+						}, function(data, status) {
+							if (status) {
+								var obj = JSON.parse(data);
+								if (obj.errCode == "0000") {
+									layer.alert("恢复成功");
+								} else {
+									layer.alert("恢复失败");
+								}
+							} else {
+								layer.alert(fail);
+							}
+						});
+					});
+				}
+			});
+		});
+	</script>
+	<script type="text/html" id="sexTpl">
+  {{#  if(d.gender === '女'){ }}
+    <span style="color: #F581B1;">{{ d.gender }}</span>
+  {{#  } else { }}
+    {{ d.gender }}
+  {{#  } }}
+</script>
+
+	<script type="text/html" id="statusTpl">
+  {{#  if(d.status === '被管理员停用'){ }}
+    <span style="color: #FF0000;">{{ d.status }}</span>
+  {{#  } else if(d.status === '用户注销') { }}
+    <span style="color: #FFA500;">{{ d.status }}</span>
+ {{#  } else { }}
+    {{ d.status }}
+  {{#  } }}
+</script>
+</body>
+</html>

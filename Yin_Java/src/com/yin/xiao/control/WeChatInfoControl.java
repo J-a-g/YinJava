@@ -2,8 +2,16 @@ package com.yin.xiao.control;
 
 import java.util.List;
 
-import com.yin.xiao.bean.WeChatInfo;
+import com.yin.xiao.bean.MemberBean;
 
 public interface WeChatInfoControl{
-	List<WeChatInfo> getWeChatInfos(int index);
+	public List<MemberBean> getMemberBean(int index);
+	
+	public List<MemberBean> getMemberBeanBydelete(int index);
+	
+	public List<MemberBean> getBusiness(int index);
+	
+	public List<MemberBean> getBusinessIsDel(int index);
+	
+	public List<MemberBean> getBusinessByApplys(int index);
 }

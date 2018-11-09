@@ -45,11 +45,11 @@
 				}); */
 				//监听提交
 				form.on('submit(login)', function(data) {
-					alert(JSON.stringify(data.field))
+					//alert(JSON.stringify(data.field))
 					var obj1 = JSON.parse(JSON.stringify(data.field));
 					console.log("username ->" + obj1.username);
 					console.log("password ->" + obj1.password);
-					$.post("http://localhost:8080/Yin_Java/WebLogin", {
+					$.post("/Yin_Java/WebLogin", {
 						username : obj1.username,
 						password : obj1.password
 					}, function(data, status) {
@@ -60,7 +60,7 @@
 							console.log(obj.errMsg); //控制台返回  zhi
 							console.log(obj.interFace);
 							if (obj.errCode == "0000") {
-								alert("登录成功");
+								//alert("登录成功");
 								 location.href='index.html'
 							} else {
 								alert("登录失败");
