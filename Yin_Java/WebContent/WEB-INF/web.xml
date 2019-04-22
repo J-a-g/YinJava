@@ -271,7 +271,10 @@
 		<!-- 上面一句话用于映射访问URL -->
 	</servlet-mapping>
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> f39ea4af4e83534c1d334e932d07116b99588524
 	<servlet>
 		<!-- 声明Servlet对象 -->
 		<servlet-name>wxpatment_face</servlet-name><!-- 3 -->
