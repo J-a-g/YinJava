@@ -1,0 +1,3785 @@
+
+<!-- saved from url=(0092)https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#get_wxpayface_authinfo -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>
+        人脸识别接口文档Android
+    </title>
+<link href="./人脸识别接口文档Android_files/document.css" rel="stylesheet"></head>
+
+<body>
+<div class="merchant-page">
+    <div class="header"><div class="header__content">
+	<div class="logo">
+		<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/index.html">微信刷脸支付</a>
+	</div>
+	<div class="nav">
+		<ul>
+			<li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/index.html">首页</a></li>
+			<li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/product-intro.html" data-id="product" role="product_intro">刷脸介绍</a></li>
+			<li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/open-access.html" data-id="machine" role="machine_entry">开放平台接入</a></li>
+			<li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/merchant-access.html" data-id="merchant" role="merchant_access_require">标准设备接入</a></li>
+			<li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-entry.html">SDK开发指引</a></li>
+		</ul>
+	</div>
+</div></div>
+    <div class="slider">
+<div class="slider__content">
+
+    
+
+    
+
+    
+
+    
+<ul class="develop">
+        <li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-entry.html" data-id="develop-entry">开发指引</a></li>
+        <li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html" class="slider_active" data-id="develop-sdk">Android SDK</a></li>
+        <li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_windows.html" data-id="develop-sdk">Windows SDK</a></li>
+        <li><a href="https://support.qq.com/products/40794" target="_blank" data-id="https://support">FAQ</a></li>
+    </ul></div></div>
+    <div class="main">
+        <div class="markdown-body">
+            <div class="TOC"><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#">文档说明</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-1">文档修订记录</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-2">版本升级指引</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-3">参数表中的“必填”栏取值说明</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-4">接口规范</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-5">各场景交互流程</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-6">人脸凭证的交互流程</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-7">流程功能介绍</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-8">名词解释</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-9">人脸凭证时序图</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-10">人脸支付的交互流程</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-11">人脸支付功能介绍</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-12">人脸支付时序图</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-13">人脸识别的交互流程</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-14">人脸识别功能介绍</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#faceid-once">人脸识别时序图(FACEID-ONCE)</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#faceid-loop">人脸识别时序图(FACEID-LOOP)</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-15">人脸识别后支付仅输手机号后四位时序图</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-16">人脸识别授权时序图</a></li></ol></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#api">微信支付API</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-17">公共部分</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-18">公共请求参数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-19">公共响应结果</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-20">公共错误码</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-21">接口耗时定义</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#get_wxpayface_authinfo">get_wxpayface_authinfo</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-22">接口地址</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-23">接口请求参数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-24">接口响应结果</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-25">人脸支付接口</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#sdk-android">微信人脸SDK - Android</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#initwxpayface">初始化 initWxpayface</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-26">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-27">请求参数</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#reportinfo">统计上报 reportInfo</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-28">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-29">请求参数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-30">接口返回</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#reportorder">交易上报 reportOrder</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-31">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-32">请求参数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-33">接口返回</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#getwxpayfacerawdata">获取数据 getWxpayfaceRawdata</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-34">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-35">返回参数</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#getwxpayfacecode">人脸识别 getWxpayfaceCode</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-36">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-37">接口参数</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#face_authtype">face_authtype取值介绍</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-38">接口返回</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-39">接口错误码</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#getwxpayfaceuserinfo">获取用户信息 getWxpayfaceUserInfo</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-40">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-41">接口参数</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#face_authtype-1">face_authtype取值介绍</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-42">接口返回</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-43">接口错误码</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#stopwxpayface">停止识别 stopWxpayface</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-44">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-45">接口参数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-46">接口返回</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#updatewxpayfacepayresult">支付结果 updateWxpayfacePayResult</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-47">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-48">接口参数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-49">接口返回</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#updatewxpayfacebannerstate">运营位控制接口 updateWxpayfaceBannerState</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-50">接口函数</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-51">接口参数</a></li></ol></li><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#releasewxpayface">释放资源 releaseWxpayface</a><ol><li><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-52">接口函数</a></li></ol></li></ol></li></ol></div>
+            <h1 id=""><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#">文档说明</a></h1>
+<h2 id="-1"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-1">文档修订记录</a></h2>
+<details>
+<summary>变更日志</summary>
+
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>简要说明</th>
+<th>修改日期</th>
+<th>变更人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.1</td>
+<td>制定接口规范初稿</td>
+<td>2018/04/04</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>部分接口字段调整</td>
+<td>2018/04/11</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td>修改交互流程</td>
+<td>2018/04/24</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>去除会员登录流程中的手机号验证，更新流程</td>
+<td>2018/04/25</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>调整整个人脸支付方案</td>
+<td>2018/04/28</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>添加linux sdk的文档</td>
+<td>2018/05/02</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.7</td>
+<td>修正部分示例的书写错误, 及部分用词不当的问题</td>
+<td>2018/05/02</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>修正部分接口说明，以及错误码， 补充android/linux的接口声明</td>
+<td>2018/05/03</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>0.9</td>
+<td>android sdk接口内容更新</td>
+<td>2018/05/04</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>支付接口变更，后台API <code>get_wxpayface_info</code>格式调整为XML</td>
+<td>2018/05/10</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td><code>getWxpayfaceCode</code>的请求参数，增加<code>out_trade_no</code>, <code>total_fee</code>两个参数</td>
+<td>2018/05/16</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>1. <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#get_wxpayface_authinfo">get_wxpayface_authinfo</a>接口修改, 去掉冗余参数如brand_id等；<br>2. <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a>, 错误码命名修改：<code>FAIL =&gt; ERROR</code>, <code>PARAM_ERR =&gt; PARAM_ERROR</code>, <code>SYSTEM_ERR =&gt; SYSTEMERROR</code><br>3. <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0">公共请求参数</a>增加sub_appid, sub_mch_id两个参数，用于服务商模式;<br>4. <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C">公共响应结果</a>响应结果冗余返回appid, mchid等参数。</td>
+<td>2018/05/21</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>1. <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%97%B6%E5%BA%8F%E5%9B%BE">人脸识别时序图</a> 流程变更，增加了更新支付结果的调用。<br>2. <code>getWxpayfaceCode</code>的错误码变更;<br>3. 增加<code>updateWxpayfacePayResult</code>接口, 参见：[支付结果 updateWxpayfacePayResult](#支付结果 updateWxpayfacePayResult), [支付结果 updateWxpayfacePayResult](#支付结果 updateWxpayfacePayResult),</td>
+<td>2018/05/24</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>[人脸识别 getWxpayfaceCode](#人脸识别 getWxpayfaceCode) 添加服务商模式的请求参数(如sub_mch_id, sub_openid等)</td>
+<td>2018/05/31</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>更新<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#get_wxpayface_authinfo">get_wxpayface_authinfo</a>的接口地址</td>
+<td>2018/06/06</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>修正<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#get_wxpayface_authinfo">get_wxpayface_authinfo</a>的接口地址为<code>https</code></td>
+<td>2018/06/11</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>[人脸识别 getWxpayfaceCode](#人脸识别 getWxpayfaceCode)请求参数添加<code>telephone</code>字段</td>
+<td>2018/07/05</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>1. 添加[统计上报接口](#统计上报 reportInfo)；<br>2. [初始化 initWxpayface](#初始化 initWxpayface)添加设置全局代理参数。</td>
+<td>2018/07/20</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>添加[交易上报接口](#交易上报 reportOrder)</td>
+<td>2018/07/26</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.10</td>
+<td>修改[统计上报接口](#统计上报 reportInfo)的接口及请求参数</td>
+<td>2018/08/01</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.11</td>
+<td>修改[统计上报接口](#统计上报 reportInfo)的接口说明，删除Windows、Linux接口说明</td>
+<td>2018/08/03</td>
+<td>ericjhli</td>
+</tr>
+<tr>
+<td>1.12</td>
+<td>[人脸识别 getWxpayfaceCode](#人脸识别 getWxpayfaceCode)的返回参数中，添加了<code>telephone_used</code>字段</td>
+<td>2018/08/15</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.13</td>
+<td>1. 添加[停止识别 stopWxpayface](#停止识别 stopWxpayface)接口;<br>2. 添加[获取用户信息 getWxpayfaceUserInfo](#获取用户信息 getWxpayfaceUserInfo)接口；<br>3. 更新<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%90%84%E5%9C%BA%E6%99%AF%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B">场景交互流程</a></td>
+<td>2018/08/28</td>
+<td>blaketang</td>
+</tr>
+<tr>
+<td>1.14</td>
+<td>getWxpayfaceCode接口新增ask_face_permit字段</td>
+<td>2018/09/27</td>
+<td>heronmiao</td>
+</tr>
+<tr>
+<td>1.14</td>
+<td>人脸识别模块增加ONCE、LOOP两种模式时序图、输手机号后四位时序图、授权时序图</td>
+<td>2018/10/18</td>
+<td>owenzqzhang</td>
+</tr>
+<tr>
+<td>1.15</td>
+<td>增加支付成功页后触发回调的描述，改动时序图。</td>
+<td>2018/10/30</td>
+<td>bobymxiang</td>
+</tr>
+<tr>
+<td>1.16</td>
+<td>新增运营位控制接口updateWxpayfaceBannerState</td>
+<td>2018/11/02</td>
+<td>owenzqzhang</td>
+</tr>
+<tr>
+<td>1.16</td>
+<td>增加版本升级指引</td>
+<td>2018/11/03</td>
+<td>bobymxiang</td>
+</tr>
+<tr>
+<td>1.18</td>
+<td>[人脸识别 getWxpayfaceCode](#人脸识别 getWxpayfaceCode) <br>1.新增是否展示成功页参数（ask_ret_page）<br>2.新增延迟支付参数(face_authtype=FACEPAY_DELAY) <br>3.返回值新增是否是未成年(underage_state)</td>
+<td>2018/12/12</td>
+<td>owenzqzhang</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>此处故意增加一个空行</p>
+</blockquote>
+</details>
+
+<p>注: 
+1.目前微信支付人脸识别，仍处于内测阶段，接口调用需先邀请加入白名单。</p>
+<h2 id="-2"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-2">版本升级指引</a></h2>
+<ol>
+<li>人脸识别app1.14版本增加了微信支付成功页，支付时自动关闭人脸识别app的逻辑去掉，先展示微信支付的成功页，展示完毕后人脸识别app会主动关闭，触发回调，再展示商户的支付成功页。相关接口见updateWxpayfacePayResult。</li>
+<li>自1.16版本增加了运营位展示，相关接口见updateWxpayfaceBannerState。</li>
+</ol>
+<h2 id="-3"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-3">参数表中的“必填”栏取值说明</a></h2>
+<table>
+<thead>
+<tr>
+<th>取值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是 / Y</td>
+<td>表示该参数必填</td>
+</tr>
+<tr>
+<td>否 / N</td>
+<td>表示该参数非必填，可以为空</td>
+</tr>
+<tr>
+<td>S</td>
+<td>表示该参数仅在错误码为<code>SUCCESS</code>时填写</td>
+</tr>
+</tbody></table>
+<h1 id="-4"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-4">接口规范</a></h1>
+<table>
+<thead>
+<tr>
+<th>摘要</th>
+<th>详细描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>传输方式</td>
+<td>采用HTTPS协议传输</td>
+</tr>
+<tr>
+<td>提交方式</td>
+<td>默认采用POST方法提交</td>
+</tr>
+<tr>
+<td>数据格式</td>
+<td>默认提交和返回数据都为JSON格式</td>
+</tr>
+<tr>
+<td>字符编码</td>
+<td>统一采用UTF-8字符编码</td>
+</tr>
+</tbody></table>
+<h1 id="-5"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-5">各场景交互流程</a></h1>
+<h2 id="-6"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-6">人脸凭证的交互流程</a></h2>
+<h3 id="-7"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-7">流程功能介绍</a></h3>
+<p>该流程通过识别用户人脸、手机号，获取<strong>人脸凭证(face_code)</strong>，该人脸凭证具有较高的安全等级，可用于支付。</p>
+<h3 id="-8"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-8">名词解释</a></h3>
+<p><strong>人脸授权：</strong>通过人脸识别，返回微信用户信息(openid, face_code)。</p>
+<p><strong>face_code</strong>：人脸凭证。常用于人脸支付，作为订单的支付凭证。</p>
+<h3 id="-9"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-9">人脸凭证时序图</a></h3>
+<div class="mermaid" data-processed="true"><svg id="mermaid-1554188670553" width="899.828125" xmlns="http://www.w3.org/2000/svg" height="1052" viewBox="-99.828125 -10 899.828125 1052"><style>
+
+
+#mermaid-1554188670553 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1554188670553 .node rect,
+#mermaid-1554188670553 .node circle,
+#mermaid-1554188670553 .node ellipse,
+#mermaid-1554188670553 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1554188670553 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1554188670553 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1554188670553 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1554188670553 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1554188670553 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1554188670553 .cluster text {
+  fill: #333; }
+
+#mermaid-1554188670553 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1554188670553 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670553 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670553 .actor-line {
+  stroke: grey; }
+
+#mermaid-1554188670553 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1554188670553 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1554188670553 #arrowhead {
+  fill: #333; }
+
+#mermaid-1554188670553 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1554188670553 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1554188670553 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670553 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670553 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670553 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1554188670553 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1554188670553 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1554188670553 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1554188670553 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1554188670553 .section2 {
+  fill: #fff400; }
+
+#mermaid-1554188670553 .section1,
+#mermaid-1554188670553 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1554188670553 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1554188670553 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1554188670553 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1554188670553 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1554188670553 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1554188670553 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670553 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1554188670553 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1554188670553 .task {
+  stroke-width: 2; }
+
+#mermaid-1554188670553 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1554188670553 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1554188670553 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1554188670553 .taskText0,
+#mermaid-1554188670553 .taskText1,
+#mermaid-1554188670553 .taskText2,
+#mermaid-1554188670553 .taskText3 {
+  fill: white; }
+
+#mermaid-1554188670553 .task0,
+#mermaid-1554188670553 .task1,
+#mermaid-1554188670553 .task2,
+#mermaid-1554188670553 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1554188670553 .taskTextOutside0,
+#mermaid-1554188670553 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1554188670553 .taskTextOutside1,
+#mermaid-1554188670553 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1554188670553 .active0,
+#mermaid-1554188670553 .active1,
+#mermaid-1554188670553 .active2,
+#mermaid-1554188670553 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1554188670553 .activeText0,
+#mermaid-1554188670553 .activeText1,
+#mermaid-1554188670553 .activeText2,
+#mermaid-1554188670553 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670553 .done0,
+#mermaid-1554188670553 .done1,
+#mermaid-1554188670553 .done2,
+#mermaid-1554188670553 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1554188670553 .doneText0,
+#mermaid-1554188670553 .doneText1,
+#mermaid-1554188670553 .doneText2,
+#mermaid-1554188670553 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670553 .crit0,
+#mermaid-1554188670553 .crit1,
+#mermaid-1554188670553 .crit2,
+#mermaid-1554188670553 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1554188670553 .activeCrit0,
+#mermaid-1554188670553 .activeCrit1,
+#mermaid-1554188670553 .activeCrit2,
+#mermaid-1554188670553 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1554188670553 .doneCrit0,
+#mermaid-1554188670553 .doneCrit1,
+#mermaid-1554188670553 .doneCrit2,
+#mermaid-1554188670553 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670553 .doneCritText0,
+#mermaid-1554188670553 .doneCritText1,
+#mermaid-1554188670553 .doneCritText2,
+#mermaid-1554188670553 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670553 .activeCritText0,
+#mermaid-1554188670553 .activeCritText1,
+#mermaid-1554188670553 .activeCritText2,
+#mermaid-1554188670553 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670553 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1554188670553 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1554188670553 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1554188670553 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1554188670553 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1554188670553 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1554188670553 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670553 .commit-id,
+#mermaid-1554188670553 .commit-msg,
+#mermaid-1554188670553 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1554188670553 {
+    color: rgb(36, 41, 46);
+    font: normal normal 400 normal 16px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g></g><g><line id="actor0" x1="75" y1="5" x2="75" y2="1041" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><line id="actor1" x1="275" y1="5" x2="275" y2="1041" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><line id="actor2" x1="475" y1="5" x2="475" y2="1041" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><line id="actor3" x1="675" y1="5" x2="675" y2="1041" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="600" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">1. 程序启动时初始化 initWxpayface</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="128" class="messageText" style="text-anchor: middle;">返回初始化结果</text><line x1="275" y1="135" x2="75" y2="135" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="75" y="163" class="messageText" style="text-anchor: middle;">商户业务逻辑(如点单，识别商品等)</text><path d="M 75,170 C 135,160 135,200 75,190" class="messageLine1" stroke-width="2" stroke="black" style="stroke-dasharray: 3, 3; fill: none;"></path></g><g><text x="175" y="228" class="messageText" style="text-anchor: middle;">2. 获取数据 getWxpayfaceRawdata</text><line x1="75" y1="235" x2="275" y2="235" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="263" class="messageText" style="text-anchor: middle;">返回rawdata</text><line x1="275" y1="270" x2="75" y2="270" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="298" class="messageText" style="text-anchor: middle;">3. 获取人脸SDK调用凭证</text><line x1="75" y1="305" x2="475" y2="305" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="333" class="messageText" style="text-anchor: middle;">get_wxpayface_authinfo(rawdata)</text><line x1="475" y1="340" x2="675" y2="340" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="368" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="675" y1="375" x2="475" y2="375" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="403" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="475" y1="410" x2="75" y2="410" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="438" class="messageText" style="text-anchor: middle;">4. 进行人脸识别 getWxpayfaceCode(authinfo,callback)</text><line x1="75" y1="445" x2="275" y2="445" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="270" y="447" fill="#f4f4f4" stroke="#666" width="10" height="409" rx="0" ry="0"></rect></g><g><text x="280" y="473" class="messageText" style="text-anchor: middle;">调用摄像头, 展示UI</text><path d="M 280,480 C 340,470 340,510 280,500" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="280" y="538" class="messageText" style="text-anchor: middle;">完成人脸检测/识别</text><path d="M 280,545 C 340,535 340,575 280,565" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="280" y="603" class="messageText" style="text-anchor: middle;">查询支付结果</text><path d="M 280,610 C 340,600 340,640 280,630" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="172.5" y="668" class="messageText" style="text-anchor: middle;">回调返回人脸识别结果(face_code, openid)</text><line x1="270" y1="675" x2="75" y2="675" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><rect x="50" y="685" fill="#EDF2AE" stroke="#666" width="650" height="36" rx="0" ry="0" class="note"></rect><text x="46" y="709" fill="black" class="noteText"><tspan x="66" fill="black">进行人脸支付,参见 2.2 人脸支付时序图</tspan></text></g><g><text x="172.5" y="749" class="messageText" style="text-anchor: middle;">5. 更新支付结果updateWxpayfacePayResult(callback)</text><line x1="75" y1="756" x2="270" y2="756" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="280" y="784" class="messageText" style="text-anchor: middle;">用户确认支付结果</text><path d="M 280,791 C 340,781 340,821 280,811" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="172.5" y="849" class="messageText" style="text-anchor: middle;">界面关闭，触发回调</text><line x1="270" y1="856" x2="75" y2="856" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="75" y="884" class="messageText" style="text-anchor: middle;">程序退出(...)</text><path d="M 75,891 C 135,881 135,921 75,911" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="175" y="949" class="messageText" style="text-anchor: middle;">6. 释放资源 releaseWxpayface</text><line x1="75" y1="956" x2="275" y2="956" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="0" y="976" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="1008.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><rect x="200" y="976" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="1008.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><rect x="400" y="976" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="1008.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><rect x="600" y="976" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="1008.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g></svg></div><p><strong>注:</strong> </p>
+<ol>
+<li>初始化 initWxpayface, 只需要在程序启动时调用；</li>
+<li>释放资源 releaseWxpayface，只需要在程序退出时调用；</li>
+</ol>
+<h2 id="-10"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-10">人脸支付的交互流程</a></h2>
+<h3 id="-11"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-11">人脸支付功能介绍</a></h3>
+<p>通过人脸凭证(face_code)，完成对订单的支付。</p>
+<h3 id="-12"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-12">人脸支付时序图</a></h3>
+<div class="mermaid" data-processed="true"><svg id="mermaid-1554188670578" width="734.375" xmlns="http://www.w3.org/2000/svg" height="793" viewBox="-134.375 -10 734.375 793"><style>
+
+
+#mermaid-1554188670578 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1554188670578 .node rect,
+#mermaid-1554188670578 .node circle,
+#mermaid-1554188670578 .node ellipse,
+#mermaid-1554188670578 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1554188670578 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1554188670578 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1554188670578 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1554188670578 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1554188670578 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1554188670578 .cluster text {
+  fill: #333; }
+
+#mermaid-1554188670578 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1554188670578 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670578 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670578 .actor-line {
+  stroke: grey; }
+
+#mermaid-1554188670578 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1554188670578 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1554188670578 #arrowhead {
+  fill: #333; }
+
+#mermaid-1554188670578 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1554188670578 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1554188670578 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670578 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670578 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670578 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1554188670578 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1554188670578 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1554188670578 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1554188670578 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1554188670578 .section2 {
+  fill: #fff400; }
+
+#mermaid-1554188670578 .section1,
+#mermaid-1554188670578 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1554188670578 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1554188670578 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1554188670578 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1554188670578 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1554188670578 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1554188670578 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670578 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1554188670578 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1554188670578 .task {
+  stroke-width: 2; }
+
+#mermaid-1554188670578 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1554188670578 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1554188670578 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1554188670578 .taskText0,
+#mermaid-1554188670578 .taskText1,
+#mermaid-1554188670578 .taskText2,
+#mermaid-1554188670578 .taskText3 {
+  fill: white; }
+
+#mermaid-1554188670578 .task0,
+#mermaid-1554188670578 .task1,
+#mermaid-1554188670578 .task2,
+#mermaid-1554188670578 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1554188670578 .taskTextOutside0,
+#mermaid-1554188670578 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1554188670578 .taskTextOutside1,
+#mermaid-1554188670578 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1554188670578 .active0,
+#mermaid-1554188670578 .active1,
+#mermaid-1554188670578 .active2,
+#mermaid-1554188670578 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1554188670578 .activeText0,
+#mermaid-1554188670578 .activeText1,
+#mermaid-1554188670578 .activeText2,
+#mermaid-1554188670578 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670578 .done0,
+#mermaid-1554188670578 .done1,
+#mermaid-1554188670578 .done2,
+#mermaid-1554188670578 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1554188670578 .doneText0,
+#mermaid-1554188670578 .doneText1,
+#mermaid-1554188670578 .doneText2,
+#mermaid-1554188670578 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670578 .crit0,
+#mermaid-1554188670578 .crit1,
+#mermaid-1554188670578 .crit2,
+#mermaid-1554188670578 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1554188670578 .activeCrit0,
+#mermaid-1554188670578 .activeCrit1,
+#mermaid-1554188670578 .activeCrit2,
+#mermaid-1554188670578 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1554188670578 .doneCrit0,
+#mermaid-1554188670578 .doneCrit1,
+#mermaid-1554188670578 .doneCrit2,
+#mermaid-1554188670578 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670578 .doneCritText0,
+#mermaid-1554188670578 .doneCritText1,
+#mermaid-1554188670578 .doneCritText2,
+#mermaid-1554188670578 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670578 .activeCritText0,
+#mermaid-1554188670578 .activeCritText1,
+#mermaid-1554188670578 .activeCritText2,
+#mermaid-1554188670578 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670578 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1554188670578 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1554188670578 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1554188670578 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1554188670578 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1554188670578 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1554188670578 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670578 .commit-id,
+#mermaid-1554188670578 .commit-msg,
+#mermaid-1554188670578 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1554188670578 {
+    color: rgb(36, 41, 46);
+    font: normal normal 400 normal 16px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g></g><g><line id="actor4" x1="75" y1="5" x2="75" y2="782" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><line id="actor5" x1="275" y1="5" x2="275" y2="782" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">商户server</tspan></text></g><g><line id="actor6" x1="475" y1="5" x2="475" y2="782" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">微信支付后台API</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="75" y="93" class="messageText" style="text-anchor: middle;">获取face_code. 参见上一节『获取人脸凭证』</text><path d="M 75,100 C 135,90 135,130 75,120" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="175" y="158" class="messageText" style="text-anchor: middle;">1. 发起订单人脸支付</text><line x1="75" y1="165" x2="275" y2="165" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="375" y="193" class="messageText" style="text-anchor: middle;">发起订单支付facepay(face_code, orderinfo)</text><line x1="275" y1="200" x2="475" y2="200" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="375" y="228" class="messageText" style="text-anchor: middle;">返回支付结果</text><line x1="475" y1="235" x2="275" y2="235" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="288" class="messageText" style="text-anchor: middle;">返回支付结果</text><line x1="275" y1="295" x2="75" y2="295" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><rect x="250" y="325" fill="#EDF2AE" stroke="#666" width="250" height="36" rx="0" ry="0" class="note"></rect><text x="246" y="349" fill="black" class="noteText"><tspan x="266" fill="black">查询支付结果</tspan></text></g><g><text x="375" y="414" class="messageText" style="text-anchor: middle;">2. 查询订单状态queryorder</text><line x1="275" y1="421" x2="475" y2="421" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="375" y="449" class="messageText" style="text-anchor: middle;">返回订单状态</text><line x1="475" y1="456" x2="275" y2="456" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><line x1="265" y1="371" x2="485" y2="371" class="loopLine"></line><line x1="485" y1="371" x2="485" y2="466" class="loopLine"></line><line x1="265" y1="466" x2="485" y2="466" class="loopLine"></line><line x1="265" y1="371" x2="265" y2="466" class="loopLine"></line><polygon points="265,371 315,371 315,384 306.6,391 265,391" class="labelBox"></polygon><text x="272.5" y="386" fill="black" class="labelText"><tspan x="272.5" fill="black">loop</tspan></text><text x="375" y="386" fill="black" class="loopText" style="text-anchor: middle;"><tspan x="375" fill="black">[ 直到:返回确定的订单状态(成功/失败/订单不存在)/超过轮询时间 ]</tspan></text></g><g><text x="175" y="494" class="messageText" style="text-anchor: middle;">返回支付结果</text><line x1="275" y1="501" x2="75" y2="501" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><rect x="50" y="536" fill="#EDF2AE" stroke="#666" width="450" height="36" rx="0" ry="0" class="note"></rect><text x="46" y="560" fill="black" class="noteText"><tspan x="66" fill="black">撤销交易,以避免用户扣款,而没有发货的情况(撤销可后台异步进行)</tspan></text></g><g><text x="375" y="625" class="messageText" style="text-anchor: middle;">3. 撤销交易reverseorder</text><line x1="275" y1="632" x2="475" y2="632" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="375" y="660" class="messageText" style="text-anchor: middle;">返回撤销结果</text><line x1="475" y1="667" x2="275" y2="667" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><line x1="265" y1="582" x2="485" y2="582" class="loopLine"></line><line x1="485" y1="582" x2="485" y2="677" class="loopLine"></line><line x1="265" y1="677" x2="485" y2="677" class="loopLine"></line><line x1="265" y1="582" x2="265" y2="677" class="loopLine"></line><polygon points="265,582 315,582 315,595 306.6,602 265,602" class="labelBox"></polygon><text x="272.5" y="597" fill="black" class="labelText"><tspan x="272.5" fill="black">loop</tspan></text><text x="375" y="597" fill="black" class="loopText" style="text-anchor: middle;"><tspan x="375" fill="black">[ 撤销交易直到成功 ]</tspan></text></g><g><line x1="40" y1="511" x2="510" y2="511" class="loopLine"></line><line x1="510" y1="511" x2="510" y2="687" class="loopLine"></line><line x1="40" y1="687" x2="510" y2="687" class="loopLine"></line><line x1="40" y1="511" x2="40" y2="687" class="loopLine"></line><polygon points="40,511 90,511 90,524 81.6,531 40,531" class="labelBox"></polygon><text x="47.5" y="526" fill="black" class="labelText"><tspan x="47.5" fill="black">opt</tspan></text><text x="275" y="526" fill="black" class="loopText" style="text-anchor: middle;"><tspan x="275" fill="black">[ 轮询结束仍然没有支付成功 ]</tspan></text></g><g><line x1="30" y1="245" x2="520" y2="245" class="loopLine"></line><line x1="520" y1="245" x2="520" y2="697" class="loopLine"></line><line x1="30" y1="697" x2="520" y2="697" class="loopLine"></line><line x1="30" y1="245" x2="30" y2="697" class="loopLine"></line><line x1="30" y1="305" x2="520" y2="305" class="loopLine" style="stroke-dasharray: 3, 3;"></line><polygon points="30,245 80,245 80,258 71.6,265 30,265" class="labelBox"></polygon><text x="37.5" y="260" fill="black" class="labelText"><tspan x="37.5" fill="black">alt</tspan></text><text x="275" y="260" fill="black" class="loopText" style="text-anchor: middle;"><tspan x="275" fill="black">[ 支付成功/失败 ]</tspan></text><text x="275" y="320" fill="black" class="loopText" style="text-anchor: middle;"><tspan x="275" fill="black">[ 支付结果未明（比如：支付中/网络超时） ]</tspan></text></g><g><rect x="0" y="717" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="749.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><rect x="200" y="717" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="749.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">商户server</tspan></text></g><g><rect x="400" y="717" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="749.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">微信支付后台API</tspan></text></g></svg></div><h2 id="-13"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-13">人脸识别的交互流程</a></h2>
+<h3 id="-14"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-14">人脸识别功能介绍</a></h3>
+<p>人脸识别通过识别用户人脸，获取用户信息（openid）。</p>
+<p>此功能常用于商户会员、商品推荐等场景， 此流程无法用于支付。</p>
+<p>此功能分FACEID-ONCE和FACEID-LOOP两种模式
+FACEID-ONCE为直接启动人脸识别流程。
+FACEID-LOOP为呼起人脸识别悬浮窗，进入等待状态，当摄像头检测到人脸时，启动人脸识别流程。</p>
+<h3 id="faceid-once"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#faceid-once">人脸识别时序图(FACEID-ONCE)</a></h3>
+<div class="mermaid" data-processed="true"><svg id="mermaid-1554188670600" width="875" xmlns="http://www.w3.org/2000/svg" height="922" viewBox="-75 -10 875 922"><style>
+
+
+#mermaid-1554188670600 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1554188670600 .node rect,
+#mermaid-1554188670600 .node circle,
+#mermaid-1554188670600 .node ellipse,
+#mermaid-1554188670600 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1554188670600 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1554188670600 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1554188670600 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1554188670600 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1554188670600 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1554188670600 .cluster text {
+  fill: #333; }
+
+#mermaid-1554188670600 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1554188670600 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670600 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670600 .actor-line {
+  stroke: grey; }
+
+#mermaid-1554188670600 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1554188670600 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1554188670600 #arrowhead {
+  fill: #333; }
+
+#mermaid-1554188670600 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1554188670600 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1554188670600 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670600 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670600 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670600 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1554188670600 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1554188670600 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1554188670600 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1554188670600 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1554188670600 .section2 {
+  fill: #fff400; }
+
+#mermaid-1554188670600 .section1,
+#mermaid-1554188670600 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1554188670600 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1554188670600 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1554188670600 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1554188670600 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1554188670600 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1554188670600 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670600 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1554188670600 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1554188670600 .task {
+  stroke-width: 2; }
+
+#mermaid-1554188670600 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1554188670600 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1554188670600 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1554188670600 .taskText0,
+#mermaid-1554188670600 .taskText1,
+#mermaid-1554188670600 .taskText2,
+#mermaid-1554188670600 .taskText3 {
+  fill: white; }
+
+#mermaid-1554188670600 .task0,
+#mermaid-1554188670600 .task1,
+#mermaid-1554188670600 .task2,
+#mermaid-1554188670600 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1554188670600 .taskTextOutside0,
+#mermaid-1554188670600 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1554188670600 .taskTextOutside1,
+#mermaid-1554188670600 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1554188670600 .active0,
+#mermaid-1554188670600 .active1,
+#mermaid-1554188670600 .active2,
+#mermaid-1554188670600 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1554188670600 .activeText0,
+#mermaid-1554188670600 .activeText1,
+#mermaid-1554188670600 .activeText2,
+#mermaid-1554188670600 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670600 .done0,
+#mermaid-1554188670600 .done1,
+#mermaid-1554188670600 .done2,
+#mermaid-1554188670600 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1554188670600 .doneText0,
+#mermaid-1554188670600 .doneText1,
+#mermaid-1554188670600 .doneText2,
+#mermaid-1554188670600 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670600 .crit0,
+#mermaid-1554188670600 .crit1,
+#mermaid-1554188670600 .crit2,
+#mermaid-1554188670600 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1554188670600 .activeCrit0,
+#mermaid-1554188670600 .activeCrit1,
+#mermaid-1554188670600 .activeCrit2,
+#mermaid-1554188670600 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1554188670600 .doneCrit0,
+#mermaid-1554188670600 .doneCrit1,
+#mermaid-1554188670600 .doneCrit2,
+#mermaid-1554188670600 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670600 .doneCritText0,
+#mermaid-1554188670600 .doneCritText1,
+#mermaid-1554188670600 .doneCritText2,
+#mermaid-1554188670600 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670600 .activeCritText0,
+#mermaid-1554188670600 .activeCritText1,
+#mermaid-1554188670600 .activeCritText2,
+#mermaid-1554188670600 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670600 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1554188670600 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1554188670600 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1554188670600 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1554188670600 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1554188670600 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1554188670600 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670600 .commit-id,
+#mermaid-1554188670600 .commit-msg,
+#mermaid-1554188670600 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1554188670600 {
+    color: rgb(36, 41, 46);
+    font: normal normal 400 normal 16px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g></g><g><line id="actor7" x1="75" y1="5" x2="75" y2="911" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><line id="actor8" x1="275" y1="5" x2="275" y2="911" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><line id="actor9" x1="475" y1="5" x2="475" y2="911" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><line id="actor10" x1="675" y1="5" x2="675" y2="911" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="600" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">1. 程序启动时初始化 initWxpayface</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="128" class="messageText" style="text-anchor: middle;">返回初始化结果</text><line x1="275" y1="135" x2="75" y2="135" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="163" class="messageText" style="text-anchor: middle;">2. 获取数据 getWxpayfaceRawdata</text><line x1="75" y1="170" x2="275" y2="170" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="198" class="messageText" style="text-anchor: middle;">返回rawdata</text><line x1="275" y1="205" x2="75" y2="205" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="233" class="messageText" style="text-anchor: middle;">3. 获取人脸SDK调用凭证</text><line x1="75" y1="240" x2="475" y2="240" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="268" class="messageText" style="text-anchor: middle;">get_wxpayface_authinfo(rawdata)</text><line x1="475" y1="275" x2="675" y2="275" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="303" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="675" y1="310" x2="475" y2="310" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="338" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="475" y1="345" x2="75" y2="345" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="373" class="messageText" style="text-anchor: middle;">4. 获取用户信息 getWxpayfaceUserInfo(authinfo)</text><line x1="75" y1="380" x2="275" y2="380" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="270" y="382" fill="#f4f4f4" stroke="#666" width="10" height="344" rx="0" ry="0"></rect></g><g><text x="280" y="408" class="messageText" style="text-anchor: middle;">调用摄像头, 启动人脸识别</text><path d="M 280,415 C 340,405 340,445 280,435" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="280" y="473" class="messageText" style="text-anchor: middle;">完成人脸检测/识别</text><path d="M 280,480 C 340,470 340,510 280,500" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="172.5" y="538" class="messageText" style="text-anchor: middle;">返回人脸识别结果(openid)</text><line x1="270" y1="545" x2="75" y2="545" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><rect x="50" y="555" fill="#EDF2AE" stroke="#666" width="650" height="36" rx="0" ry="0" class="note"></rect><text x="46" y="579" fill="black" class="noteText"><tspan x="66" fill="black">执行商户侧的逻辑</tspan></text></g><g><text x="172.5" y="619" class="messageText" style="text-anchor: middle;">5. 停止识别 stopWxpayface</text><line x1="75" y1="626" x2="270" y2="626" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="280" y="654" class="messageText" style="text-anchor: middle;">停止识别</text><path d="M 280,661 C 340,651 340,691 280,681" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="172.5" y="719" class="messageText" style="text-anchor: middle;">返回</text><line x1="270" y1="726" x2="75" y2="726" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="75" y="754" class="messageText" style="text-anchor: middle;">程序退出(...)</text><path d="M 75,761 C 135,751 135,791 75,781" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="175" y="819" class="messageText" style="text-anchor: middle;">6. 释放资源 releaseWxpayface</text><line x1="75" y1="826" x2="275" y2="826" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="0" y="846" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="878.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><rect x="200" y="846" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="878.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><rect x="400" y="846" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="878.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><rect x="600" y="846" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="878.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g></svg></div><h3 id="faceid-loop"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#faceid-loop">人脸识别时序图(FACEID-LOOP)</a></h3>
+<div class="mermaid" data-processed="true"><svg id="mermaid-1554188670615" width="875" xmlns="http://www.w3.org/2000/svg" height="987" viewBox="-75 -10 875 987"><style>
+
+
+#mermaid-1554188670615 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1554188670615 .node rect,
+#mermaid-1554188670615 .node circle,
+#mermaid-1554188670615 .node ellipse,
+#mermaid-1554188670615 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1554188670615 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1554188670615 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1554188670615 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1554188670615 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1554188670615 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1554188670615 .cluster text {
+  fill: #333; }
+
+#mermaid-1554188670615 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1554188670615 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670615 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670615 .actor-line {
+  stroke: grey; }
+
+#mermaid-1554188670615 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1554188670615 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1554188670615 #arrowhead {
+  fill: #333; }
+
+#mermaid-1554188670615 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1554188670615 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1554188670615 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670615 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670615 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670615 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1554188670615 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1554188670615 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1554188670615 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1554188670615 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1554188670615 .section2 {
+  fill: #fff400; }
+
+#mermaid-1554188670615 .section1,
+#mermaid-1554188670615 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1554188670615 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1554188670615 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1554188670615 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1554188670615 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1554188670615 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1554188670615 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670615 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1554188670615 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1554188670615 .task {
+  stroke-width: 2; }
+
+#mermaid-1554188670615 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1554188670615 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1554188670615 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1554188670615 .taskText0,
+#mermaid-1554188670615 .taskText1,
+#mermaid-1554188670615 .taskText2,
+#mermaid-1554188670615 .taskText3 {
+  fill: white; }
+
+#mermaid-1554188670615 .task0,
+#mermaid-1554188670615 .task1,
+#mermaid-1554188670615 .task2,
+#mermaid-1554188670615 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1554188670615 .taskTextOutside0,
+#mermaid-1554188670615 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1554188670615 .taskTextOutside1,
+#mermaid-1554188670615 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1554188670615 .active0,
+#mermaid-1554188670615 .active1,
+#mermaid-1554188670615 .active2,
+#mermaid-1554188670615 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1554188670615 .activeText0,
+#mermaid-1554188670615 .activeText1,
+#mermaid-1554188670615 .activeText2,
+#mermaid-1554188670615 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670615 .done0,
+#mermaid-1554188670615 .done1,
+#mermaid-1554188670615 .done2,
+#mermaid-1554188670615 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1554188670615 .doneText0,
+#mermaid-1554188670615 .doneText1,
+#mermaid-1554188670615 .doneText2,
+#mermaid-1554188670615 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670615 .crit0,
+#mermaid-1554188670615 .crit1,
+#mermaid-1554188670615 .crit2,
+#mermaid-1554188670615 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1554188670615 .activeCrit0,
+#mermaid-1554188670615 .activeCrit1,
+#mermaid-1554188670615 .activeCrit2,
+#mermaid-1554188670615 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1554188670615 .doneCrit0,
+#mermaid-1554188670615 .doneCrit1,
+#mermaid-1554188670615 .doneCrit2,
+#mermaid-1554188670615 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670615 .doneCritText0,
+#mermaid-1554188670615 .doneCritText1,
+#mermaid-1554188670615 .doneCritText2,
+#mermaid-1554188670615 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670615 .activeCritText0,
+#mermaid-1554188670615 .activeCritText1,
+#mermaid-1554188670615 .activeCritText2,
+#mermaid-1554188670615 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670615 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1554188670615 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1554188670615 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1554188670615 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1554188670615 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1554188670615 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1554188670615 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670615 .commit-id,
+#mermaid-1554188670615 .commit-msg,
+#mermaid-1554188670615 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1554188670615 {
+    color: rgb(36, 41, 46);
+    font: normal normal 400 normal 16px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g></g><g><line id="actor11" x1="75" y1="5" x2="75" y2="976" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><line id="actor12" x1="275" y1="5" x2="275" y2="976" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><line id="actor13" x1="475" y1="5" x2="475" y2="976" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><line id="actor14" x1="675" y1="5" x2="675" y2="976" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="600" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">1. 程序启动时初始化 initWxpayface</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="128" class="messageText" style="text-anchor: middle;">返回初始化结果</text><line x1="275" y1="135" x2="75" y2="135" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="163" class="messageText" style="text-anchor: middle;">2. 获取数据 getWxpayfaceRawdata</text><line x1="75" y1="170" x2="275" y2="170" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="198" class="messageText" style="text-anchor: middle;">返回rawdata</text><line x1="275" y1="205" x2="75" y2="205" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="233" class="messageText" style="text-anchor: middle;">3. 获取人脸SDK调用凭证</text><line x1="75" y1="240" x2="475" y2="240" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="268" class="messageText" style="text-anchor: middle;">get_wxpayface_authinfo(rawdata)</text><line x1="475" y1="275" x2="675" y2="275" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="303" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="675" y1="310" x2="475" y2="310" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="338" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="475" y1="345" x2="75" y2="345" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="373" class="messageText" style="text-anchor: middle;">4. 获取用户信息 getWxpayfaceUserInfo(authinfo)</text><line x1="75" y1="380" x2="275" y2="380" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="270" y="382" fill="#f4f4f4" stroke="#666" width="10" height="409" rx="0" ry="0"></rect></g><g><text x="280" y="408" class="messageText" style="text-anchor: middle;">调用摄像头, 启动悬浮窗, 进入等待状态</text><path d="M 280,415 C 340,405 340,445 280,435" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="280" y="473" class="messageText" style="text-anchor: middle;">检测到人脸, 启动人脸识别</text><path d="M 280,480 C 340,470 340,510 280,500" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="280" y="538" class="messageText" style="text-anchor: middle;">完成人脸检测/识别</text><path d="M 280,545 C 340,535 340,575 280,565" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="172.5" y="603" class="messageText" style="text-anchor: middle;">返回人脸识别结果(openid)</text><line x1="270" y1="610" x2="75" y2="610" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><rect x="50" y="620" fill="#EDF2AE" stroke="#666" width="650" height="36" rx="0" ry="0" class="note"></rect><text x="46" y="644" fill="black" class="noteText"><tspan x="66" fill="black">执行商户侧的逻辑</tspan></text></g><g><text x="172.5" y="684" class="messageText" style="text-anchor: middle;">5. 停止识别 stopWxpayface</text><line x1="75" y1="691" x2="270" y2="691" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="280" y="719" class="messageText" style="text-anchor: middle;">停止识别</text><path d="M 280,726 C 340,716 340,756 280,746" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="172.5" y="784" class="messageText" style="text-anchor: middle;">返回</text><line x1="270" y1="791" x2="75" y2="791" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="75" y="819" class="messageText" style="text-anchor: middle;">程序退出(...)</text><path d="M 75,826 C 135,816 135,856 75,846" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="175" y="884" class="messageText" style="text-anchor: middle;">6. 释放资源 releaseWxpayface</text><line x1="75" y1="891" x2="275" y2="891" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="0" y="911" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="943.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><rect x="200" y="911" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="943.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><rect x="400" y="911" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="943.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><rect x="600" y="911" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="943.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g></svg></div><h3 id="-15"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-15">人脸识别后支付仅输手机号后四位时序图</a></h3>
+<p>此功能用于商户人脸识别获取用户信息（openid）后，再进行人脸支付可仅输入手机号后四位</p>
+<div class="mermaid" data-processed="true"><svg id="mermaid-1554188670630" width="650" xmlns="http://www.w3.org/2000/svg" height="393" viewBox="-50 -10 650 393"><style>
+
+
+#mermaid-1554188670630 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1554188670630 .node rect,
+#mermaid-1554188670630 .node circle,
+#mermaid-1554188670630 .node ellipse,
+#mermaid-1554188670630 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1554188670630 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1554188670630 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1554188670630 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1554188670630 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1554188670630 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1554188670630 .cluster text {
+  fill: #333; }
+
+#mermaid-1554188670630 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1554188670630 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670630 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670630 .actor-line {
+  stroke: grey; }
+
+#mermaid-1554188670630 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1554188670630 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1554188670630 #arrowhead {
+  fill: #333; }
+
+#mermaid-1554188670630 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1554188670630 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1554188670630 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670630 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670630 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670630 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1554188670630 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1554188670630 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1554188670630 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1554188670630 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1554188670630 .section2 {
+  fill: #fff400; }
+
+#mermaid-1554188670630 .section1,
+#mermaid-1554188670630 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1554188670630 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1554188670630 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1554188670630 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1554188670630 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1554188670630 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1554188670630 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670630 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1554188670630 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1554188670630 .task {
+  stroke-width: 2; }
+
+#mermaid-1554188670630 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1554188670630 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1554188670630 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1554188670630 .taskText0,
+#mermaid-1554188670630 .taskText1,
+#mermaid-1554188670630 .taskText2,
+#mermaid-1554188670630 .taskText3 {
+  fill: white; }
+
+#mermaid-1554188670630 .task0,
+#mermaid-1554188670630 .task1,
+#mermaid-1554188670630 .task2,
+#mermaid-1554188670630 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1554188670630 .taskTextOutside0,
+#mermaid-1554188670630 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1554188670630 .taskTextOutside1,
+#mermaid-1554188670630 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1554188670630 .active0,
+#mermaid-1554188670630 .active1,
+#mermaid-1554188670630 .active2,
+#mermaid-1554188670630 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1554188670630 .activeText0,
+#mermaid-1554188670630 .activeText1,
+#mermaid-1554188670630 .activeText2,
+#mermaid-1554188670630 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670630 .done0,
+#mermaid-1554188670630 .done1,
+#mermaid-1554188670630 .done2,
+#mermaid-1554188670630 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1554188670630 .doneText0,
+#mermaid-1554188670630 .doneText1,
+#mermaid-1554188670630 .doneText2,
+#mermaid-1554188670630 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670630 .crit0,
+#mermaid-1554188670630 .crit1,
+#mermaid-1554188670630 .crit2,
+#mermaid-1554188670630 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1554188670630 .activeCrit0,
+#mermaid-1554188670630 .activeCrit1,
+#mermaid-1554188670630 .activeCrit2,
+#mermaid-1554188670630 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1554188670630 .doneCrit0,
+#mermaid-1554188670630 .doneCrit1,
+#mermaid-1554188670630 .doneCrit2,
+#mermaid-1554188670630 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670630 .doneCritText0,
+#mermaid-1554188670630 .doneCritText1,
+#mermaid-1554188670630 .doneCritText2,
+#mermaid-1554188670630 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670630 .activeCritText0,
+#mermaid-1554188670630 .activeCritText1,
+#mermaid-1554188670630 .activeCritText2,
+#mermaid-1554188670630 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670630 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1554188670630 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1554188670630 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1554188670630 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1554188670630 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1554188670630 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1554188670630 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670630 .commit-id,
+#mermaid-1554188670630 .commit-msg,
+#mermaid-1554188670630 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1554188670630 {
+    color: rgb(36, 41, 46);
+    font: normal normal 400 normal 16px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g></g><g><line id="actor15" x1="75" y1="5" x2="75" y2="382" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><line id="actor16" x1="275" y1="5" x2="275" y2="382" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><line id="actor17" x1="475" y1="5" x2="475" y2="382" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="275" y="93" class="messageText" style="text-anchor: middle;">请求用户手机号(openid)</text><line x1="75" y1="100" x2="475" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="275" y="128" class="messageText" style="text-anchor: middle;">返回用户手机号</text><line x1="475" y1="135" x2="75" y2="135" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="163" class="messageText" style="text-anchor: middle;">进行人脸识别 getWxpayfaceCode(authinfo),传入用户手机号</text><line x1="75" y1="170" x2="275" y2="170" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="50" y="180" fill="#EDF2AE" stroke="#666" width="450" height="36" rx="0" ry="0" class="note"></rect><text x="46" y="204" fill="black" class="noteText"><tspan x="66" fill="black">进行人脸凭证获取,参见 2.1 人脸凭证的交互流程</tspan></text></g><g><text x="175" y="244" class="messageText" style="text-anchor: middle;">返回人脸识别结果(face_code, openid)</text><line x1="275" y1="251" x2="75" y2="251" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><rect x="50" y="261" fill="#EDF2AE" stroke="#666" width="450" height="36" rx="0" ry="0" class="note"></rect><text x="46" y="285" fill="black" class="noteText"><tspan x="66" fill="black">进行人脸支付,参见 2.2 人脸支付时序图</tspan></text></g><g><rect x="0" y="317" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="349.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><rect x="200" y="317" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="349.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><rect x="400" y="317" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="349.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g></svg></div><h3 id="-16"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-16">人脸识别授权时序图</a></h3>
+<p>此功能用于商户人脸识别获取用户信息时，用户首次使用，未授权商户使用该用户人脸信息时，可进入授权页面进入授权，此流程由人脸支付APP控制，商户无需调用。</p>
+<div class="mermaid" data-processed="true"><svg id="mermaid-1554188670642" width="850" xmlns="http://www.w3.org/2000/svg" height="792" viewBox="-50 -10 850 792"><style>
+
+
+#mermaid-1554188670642 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1554188670642 .node rect,
+#mermaid-1554188670642 .node circle,
+#mermaid-1554188670642 .node ellipse,
+#mermaid-1554188670642 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1554188670642 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1554188670642 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1554188670642 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1554188670642 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1554188670642 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1554188670642 .cluster text {
+  fill: #333; }
+
+#mermaid-1554188670642 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1554188670642 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670642 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670642 .actor-line {
+  stroke: grey; }
+
+#mermaid-1554188670642 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1554188670642 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1554188670642 #arrowhead {
+  fill: #333; }
+
+#mermaid-1554188670642 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1554188670642 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1554188670642 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670642 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670642 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670642 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1554188670642 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1554188670642 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1554188670642 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1554188670642 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1554188670642 .section2 {
+  fill: #fff400; }
+
+#mermaid-1554188670642 .section1,
+#mermaid-1554188670642 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1554188670642 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1554188670642 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1554188670642 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1554188670642 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1554188670642 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1554188670642 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670642 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1554188670642 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1554188670642 .task {
+  stroke-width: 2; }
+
+#mermaid-1554188670642 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1554188670642 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1554188670642 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1554188670642 .taskText0,
+#mermaid-1554188670642 .taskText1,
+#mermaid-1554188670642 .taskText2,
+#mermaid-1554188670642 .taskText3 {
+  fill: white; }
+
+#mermaid-1554188670642 .task0,
+#mermaid-1554188670642 .task1,
+#mermaid-1554188670642 .task2,
+#mermaid-1554188670642 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1554188670642 .taskTextOutside0,
+#mermaid-1554188670642 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1554188670642 .taskTextOutside1,
+#mermaid-1554188670642 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1554188670642 .active0,
+#mermaid-1554188670642 .active1,
+#mermaid-1554188670642 .active2,
+#mermaid-1554188670642 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1554188670642 .activeText0,
+#mermaid-1554188670642 .activeText1,
+#mermaid-1554188670642 .activeText2,
+#mermaid-1554188670642 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670642 .done0,
+#mermaid-1554188670642 .done1,
+#mermaid-1554188670642 .done2,
+#mermaid-1554188670642 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1554188670642 .doneText0,
+#mermaid-1554188670642 .doneText1,
+#mermaid-1554188670642 .doneText2,
+#mermaid-1554188670642 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670642 .crit0,
+#mermaid-1554188670642 .crit1,
+#mermaid-1554188670642 .crit2,
+#mermaid-1554188670642 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1554188670642 .activeCrit0,
+#mermaid-1554188670642 .activeCrit1,
+#mermaid-1554188670642 .activeCrit2,
+#mermaid-1554188670642 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1554188670642 .doneCrit0,
+#mermaid-1554188670642 .doneCrit1,
+#mermaid-1554188670642 .doneCrit2,
+#mermaid-1554188670642 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670642 .doneCritText0,
+#mermaid-1554188670642 .doneCritText1,
+#mermaid-1554188670642 .doneCritText2,
+#mermaid-1554188670642 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670642 .activeCritText0,
+#mermaid-1554188670642 .activeCritText1,
+#mermaid-1554188670642 .activeCritText2,
+#mermaid-1554188670642 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670642 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1554188670642 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1554188670642 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1554188670642 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1554188670642 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1554188670642 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1554188670642 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670642 .commit-id,
+#mermaid-1554188670642 .commit-msg,
+#mermaid-1554188670642 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1554188670642 {
+    color: rgb(36, 41, 46);
+    font: normal normal 400 normal 16px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g></g><g><line id="actor18" x1="75" y1="5" x2="75" y2="781" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><line id="actor19" x1="275" y1="5" x2="275" y2="781" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><line id="actor20" x1="475" y1="5" x2="475" y2="781" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><line id="actor21" x1="675" y1="5" x2="675" y2="781" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="600" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">1. 程序启动时初始化 initWxpayface</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="128" class="messageText" style="text-anchor: middle;">返回初始化结果</text><line x1="275" y1="135" x2="75" y2="135" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="163" class="messageText" style="text-anchor: middle;">2. 获取数据 getWxpayfaceRawdata</text><line x1="75" y1="170" x2="275" y2="170" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="198" class="messageText" style="text-anchor: middle;">返回rawdata</text><line x1="275" y1="205" x2="75" y2="205" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="233" class="messageText" style="text-anchor: middle;">3. 获取人脸SDK调用凭证</text><line x1="75" y1="240" x2="475" y2="240" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="268" class="messageText" style="text-anchor: middle;">get_wxpayface_authinfo(rawdata)</text><line x1="475" y1="275" x2="675" y2="275" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="575" y="303" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="675" y1="310" x2="475" y2="310" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="275" y="338" class="messageText" style="text-anchor: middle;">返回authinfo</text><line x1="475" y1="345" x2="75" y2="345" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="373" class="messageText" style="text-anchor: middle;">4. 获取用户信息 getWxpayfaceUserInfo(authinfo)</text><line x1="75" y1="380" x2="275" y2="380" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="270" y="382" fill="#f4f4f4" stroke="#666" width="10" height="233" rx="0" ry="0"></rect></g><g><text x="280" y="408" class="messageText" style="text-anchor: middle;">用户首次使用，未授权</text><path d="M 280,415 C 340,405 340,445 280,435" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="172.5" y="473" class="messageText" style="text-anchor: middle;">返回人脸识别结果(用户未授权)</text><line x1="270" y1="480" x2="75" y2="480" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="280" y="508" class="messageText" style="text-anchor: middle;">进入授权页，输入微信绑定手机号</text><path d="M 280,515 C 340,505 340,545 280,535" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="477.5" y="573" class="messageText" style="text-anchor: middle;">get_user_info, 授权用户</text><line x1="280" y1="580" x2="675" y2="580" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="477.5" y="608" class="messageText" style="text-anchor: middle;">返回授权结果, 关闭UI</text><line x1="675" y1="615" x2="280" y2="615" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><text x="175" y="643" class="messageText" style="text-anchor: middle;">重新启动人脸识别流程</text><line x1="75" y1="650" x2="275" y2="650" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="50" y="660" fill="#EDF2AE" stroke="#666" width="650" height="36" rx="0" ry="0" class="note"></rect><text x="46" y="684" fill="black" class="noteText"><tspan x="66" fill="black">进行人脸识别,参见 2.3 人脸识别时序图</tspan></text></g><g><rect x="0" y="716" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="748.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户APP</tspan></text></g><g><rect x="200" y="716" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="748.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信人脸sdk</tspan></text></g><g><rect x="400" y="716" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="748.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="475" dy="0">商户server</tspan></text></g><g><rect x="600" y="716" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="748.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="675" dy="0">微信支付后台API</tspan></text></g></svg></div><h1 id="api"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#api">微信支付API</a></h1>
+<h2 id="-17"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-17">公共部分</a></h2>
+<h3 id="-18"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-18">公共请求参数</a></h3>
+<p>所有请求均需要填写的参数。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appid</td>
+<td>是</td>
+<td>string(32)</td>
+<td>公众号</td>
+</tr>
+<tr>
+<td>mch_id</td>
+<td>是</td>
+<td>string(32)</td>
+<td>商户号</td>
+</tr>
+<tr>
+<td>sub_appid</td>
+<td>否</td>
+<td>string(32)</td>
+<td>子商户公众账号ID(服务商模式)</td>
+</tr>
+<tr>
+<td>sub_mch_id</td>
+<td>否</td>
+<td>string(32)</td>
+<td>子商户号(服务商模式)</td>
+</tr>
+<tr>
+<td>now</td>
+<td>是</td>
+<td>int</td>
+<td>取当前时间，10位unix时间戳。  例如：1239878956</td>
+</tr>
+<tr>
+<td>version</td>
+<td>是</td>
+<td>string</td>
+<td>版本号。固定为1</td>
+</tr>
+<tr>
+<td>sign_type</td>
+<td>是</td>
+<td>string</td>
+<td>签名类型，目前支持HMAC-SHA256和MD5，默认为MD5</td>
+</tr>
+<tr>
+<td>nonce_str</td>
+<td>是</td>
+<td>string(32)</td>
+<td>随机字符串，不长于32位</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>是</td>
+<td>string</td>
+<td>参数签名。<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3">详见微信支付签名算法</a></td>
+</tr>
+</tbody></table>
+<h3 id="-19"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-19">公共响应结果</a></h3>
+<p>所有响应结果均会返回的参数。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string(16)</td>
+<td>错误码。公共定义见<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+<tr>
+<td>nonce_str</td>
+<td>是</td>
+<td>string(32)</td>
+<td>随机字符串</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>是</td>
+<td>string</td>
+<td>响应结果签名</td>
+</tr>
+<tr>
+<td>appid</td>
+<td>否</td>
+<td>string(32)</td>
+<td>公众号</td>
+</tr>
+<tr>
+<td>mch_id</td>
+<td>否</td>
+<td>string(32)</td>
+<td>商户号</td>
+</tr>
+<tr>
+<td>sub_appid</td>
+<td>否</td>
+<td>string(32)</td>
+<td>子商户公众账号ID(服务商模式)</td>
+</tr>
+<tr>
+<td>sub_mch_id</td>
+<td>否</td>
+<td>string(32)</td>
+<td>子商户号(服务商模式)</td>
+</tr>
+</tbody></table>
+<h3 id="-20"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-20">公共错误码</a></h3>
+<p>所有接口的return_code参数，都可能返回的公共错误码。</p>
+<table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>描述</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SUCCESS</td>
+<td>接口成功</td>
+<td>无</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>接口失败</td>
+<td>展示错误原因（该请求无法通过重试解决）</td>
+</tr>
+<tr>
+<td>PARAM_ERROR</td>
+<td>参数错误</td>
+<td>参照错误提示</td>
+</tr>
+<tr>
+<td>SYSTEMERROR</td>
+<td>接口返回错误</td>
+<td>系统异常，可重试该请求</td>
+</tr>
+</tbody></table>
+<h3 id="-21"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-21">接口耗时定义</a></h3>
+<p>常见请求耗时分解见下图：</p>
+<div class="mermaid" data-processed="true"><svg id="mermaid-1554188670658" width="475" xmlns="http://www.w3.org/2000/svg" height="296" viewBox="-50 -10 475 296"><style>
+
+
+#mermaid-1554188670658 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1554188670658 .node rect,
+#mermaid-1554188670658 .node circle,
+#mermaid-1554188670658 .node ellipse,
+#mermaid-1554188670658 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1554188670658 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1554188670658 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1554188670658 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1554188670658 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1554188670658 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1554188670658 .cluster text {
+  fill: #333; }
+
+#mermaid-1554188670658 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1554188670658 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670658 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670658 .actor-line {
+  stroke: grey; }
+
+#mermaid-1554188670658 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1554188670658 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1554188670658 #arrowhead {
+  fill: #333; }
+
+#mermaid-1554188670658 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1554188670658 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1554188670658 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1554188670658 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670658 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1554188670658 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1554188670658 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1554188670658 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1554188670658 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1554188670658 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1554188670658 .section2 {
+  fill: #fff400; }
+
+#mermaid-1554188670658 .section1,
+#mermaid-1554188670658 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1554188670658 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1554188670658 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1554188670658 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1554188670658 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1554188670658 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1554188670658 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670658 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1554188670658 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1554188670658 .task {
+  stroke-width: 2; }
+
+#mermaid-1554188670658 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1554188670658 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1554188670658 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1554188670658 .taskText0,
+#mermaid-1554188670658 .taskText1,
+#mermaid-1554188670658 .taskText2,
+#mermaid-1554188670658 .taskText3 {
+  fill: white; }
+
+#mermaid-1554188670658 .task0,
+#mermaid-1554188670658 .task1,
+#mermaid-1554188670658 .task2,
+#mermaid-1554188670658 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1554188670658 .taskTextOutside0,
+#mermaid-1554188670658 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1554188670658 .taskTextOutside1,
+#mermaid-1554188670658 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1554188670658 .active0,
+#mermaid-1554188670658 .active1,
+#mermaid-1554188670658 .active2,
+#mermaid-1554188670658 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1554188670658 .activeText0,
+#mermaid-1554188670658 .activeText1,
+#mermaid-1554188670658 .activeText2,
+#mermaid-1554188670658 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670658 .done0,
+#mermaid-1554188670658 .done1,
+#mermaid-1554188670658 .done2,
+#mermaid-1554188670658 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1554188670658 .doneText0,
+#mermaid-1554188670658 .doneText1,
+#mermaid-1554188670658 .doneText2,
+#mermaid-1554188670658 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1554188670658 .crit0,
+#mermaid-1554188670658 .crit1,
+#mermaid-1554188670658 .crit2,
+#mermaid-1554188670658 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1554188670658 .activeCrit0,
+#mermaid-1554188670658 .activeCrit1,
+#mermaid-1554188670658 .activeCrit2,
+#mermaid-1554188670658 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1554188670658 .doneCrit0,
+#mermaid-1554188670658 .doneCrit1,
+#mermaid-1554188670658 .doneCrit2,
+#mermaid-1554188670658 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1554188670658 .doneCritText0,
+#mermaid-1554188670658 .doneCritText1,
+#mermaid-1554188670658 .doneCritText2,
+#mermaid-1554188670658 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670658 .activeCritText0,
+#mermaid-1554188670658 .activeCritText1,
+#mermaid-1554188670658 .activeCritText2,
+#mermaid-1554188670658 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1554188670658 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1554188670658 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1554188670658 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1554188670658 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1554188670658 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1554188670658 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1554188670658 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1554188670658 .commit-id,
+#mermaid-1554188670658 .commit-msg,
+#mermaid-1554188670658 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1554188670658 {
+    color: rgb(36, 41, 46);
+    font: normal normal 400 normal 16px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g></g><g><line id="actor22" x1="75" y1="5" x2="75" y2="285" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户server</tspan></text></g><g><line id="actor23" x1="275" y1="5" x2="275" y2="285" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信支付API</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">请求网络耗时(N1)</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="275" y="128" class="messageText" style="text-anchor: middle;">接口最大耗时(W)</text><path d="M 275,135 C 335,125 335,165 275,155" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></path></g><g><text x="175" y="193" class="messageText" style="text-anchor: middle;">返回网络耗时(N2)</text><line x1="275" y1="200" x2="75" y2="200" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></g><g><rect x="0" y="220" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="252.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">商户server</tspan></text></g><g><rect x="200" y="220" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="252.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">微信支付API</tspan></text></g></svg></div><p>从商户server来看，接口超时应满足：</p>
+<p><code>接口超时 &gt; (N1 + N2) + W</code></p>
+<p><strong>请求/返回网络耗时（N1 + N2）：</strong></p>
+<p>由于网络耗时主要受以下因素影响：</p>
+<ul>
+<li>网络环境(网络延迟/丢包率)；</li>
+<li>建立https协议的网络通信；</li>
+<li>传输的数据长度；</li>
+<li>域名DNS解析</li>
+</ul>
+<p>合理的网络耗时部分，由开发根据实际情况来调整。</p>
+<p>若网络延迟&lt; 50ms (比如<code>ping api.mch.weixin.qq.com</code>的延低于50ms)，丢包率低的情况下，可以评估网络耗时约为2秒。</p>
+<p><strong>接口最大耗时（W）：</strong></p>
+<p>由微信提供该接口需要的最长耗时。</p>
+<h2 id="get_wxpayface_authinfo"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#get_wxpayface_authinfo">get_wxpayface_authinfo</a></h2>
+<p>获取 SDK调用凭证。</p>
+<p><strong>注：</strong>返回的接口凭证<code>authinfo</code>，可以在<code>expires_in</code>指定的有效期内，同一台机具上重复使用。</p>
+<h3 id="-22"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-22">接口地址</a></h3>
+<p><code>https://payapp.weixin.qq.com/face/get_wxpayface_authinfo</code></p>
+<p><strong>接口最大耗时(W)：</strong> 5秒。 细节参见<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E6%8E%A5%E5%8F%A3%E8%80%97%E6%97%B6%E5%AE%9A%E4%B9%89">接口耗时定义</a></p>
+<p>考虑到与后台人脸支付API的一致性, 这里统一采用xml格式。</p>
+<h3 id="-23"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-23">接口请求参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>store_id</td>
+<td>是</td>
+<td>string(32)</td>
+<td>门店编号， 由商户定义， 各门店唯一。</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>是</td>
+<td>string(128)</td>
+<td>门店名称，由商户定义。（可用于展示）</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>是</td>
+<td>string(32)</td>
+<td>终端设备编号，由商户定义。</td>
+</tr>
+<tr>
+<td>attach</td>
+<td>否</td>
+<td>string</td>
+<td>附加字段。字段格式使用Json</td>
+</tr>
+<tr>
+<td>rawdata</td>
+<td>是</td>
+<td>string(2048)</td>
+<td>初始化数据。由微信人脸SDK的接口返回。<br>获取方式参见：<br>[获取数据 getWxpayfaceRawdata](#获取数据 getWxpayfaceRawdata)<br>[获取数据 getWxpayfaceRawdata](#获取数据 getWxpayfaceRawdata)</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<pre><code class="language-json"><span class="hljs-tag">&lt;<span class="hljs-name">appid</span>&gt;</span>wx31fdaErqR31<span class="hljs-tag">&lt;/<span class="hljs-name">appid</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mch_id</span>&gt;</span>12345689<span class="hljs-tag">&lt;/<span class="hljs-name">mch_id</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">now</span>&gt;</span>1239878956<span class="hljs-tag">&lt;/<span class="hljs-name">now</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sign_type</span>&gt;</span>MD5<span class="hljs-tag">&lt;/<span class="hljs-name">sign_type</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">nonce_str</span>&gt;</span>V37ZHZVf2OrwsUV7kXTjTguP74c0byvE<span class="hljs-tag">&lt;/<span class="hljs-name">nonce_str</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sign</span>&gt;</span>O4TCVPAJDIK933NUSUUSS6MLIQT2PCXW<span class="hljs-tag">&lt;/<span class="hljs-name">sign</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">store_id</span>&gt;</span>IMG001<span class="hljs-tag">&lt;/<span class="hljs-name">store_id</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">store_name</span>&gt;</span>爱马哥南山店<span class="hljs-tag">&lt;/<span class="hljs-name">store_name</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">device_id</span>&gt;</span>DEV001<span class="hljs-tag">&lt;/<span class="hljs-name">device_id</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">rawdata</span>&gt;</span>H0kvnUgGHKuqflNwtNqCdOVpbO4Fd4u2NRS2uJz5/n080cOlYF5nNnuyVc+UsX0+q3nVrEYAhJFyxeG8MBx/cmZSicjI8UipaehhfFiIHnBZndrCSeGizNs6PSowudTG<span class="hljs-tag">&lt;/<span class="hljs-name">rawdata</span>&gt;</span></code></pre>
+<h3 id="-24"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-24">接口响应结果</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>authinfo</td>
+<td>否</td>
+<td>string(4096)</td>
+<td>SDK调用凭证。用于调用SDK的人脸识别接口。<br>参见[人脸识别 getWxpayfaceCode](#人脸识别 getWxpayfaceCode)</td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>否</td>
+<td>int</td>
+<td>authinfo的有效时间, 单位秒。 例如: 3600<br>在有效时间内, 对于同一台终端设备，相同的参数的前提下(如：相同的公众号、商户号、 门店编号等），可以用同一个authinfo，多次调用SDK的<code>getWxpayfaceCode</code>接口。</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<pre><code class="language-json"><span class="hljs-tag">&lt;<span class="hljs-name">return_code</span>&gt;</span>SUCCESS<span class="hljs-tag">&lt;/<span class="hljs-name">return_code</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">return_msg</span>&gt;</span>请求成功<span class="hljs-tag">&lt;/<span class="hljs-name">return_msg</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">nonce_str</span>&gt;</span>Tivppi4UXAbgLxk8e1Sij76YdowOFFii<span class="hljs-tag">&lt;/<span class="hljs-name">nonce_str</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sign</span>&gt;</span>PL0EUID6A7ICWNKHCSMQC0UIXOYNSE5B<span class="hljs-tag">&lt;/<span class="hljs-name">sign</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">appid</span>&gt;</span>wx31fdaErqR31<span class="hljs-tag">&lt;/<span class="hljs-name">appid</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mch_id</span>&gt;</span>12345689<span class="hljs-tag">&lt;/<span class="hljs-name">mch_id</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">authinfo</span>&gt;</span>q3OPhFtQBf6KZGqmZhejKCRy5K/ch0kwS11YSsEj9XmUGqcsT2QPHt0Oa7xaCMCoSZTWMmShCo4dOiO5tU+OJEsvSxXzn5m3Nkh747tinNlbpJmVq1zOPj+FJNndkzanxoiAddO8p1EfrmUhJs/aNf0pDfrPoVfkAapK+ZY6blwyaDQ9bB7+KkZq29kObsXOZ3thg+bxP4RAqC0oxNS4JiyP0uA1Euzxtkc9lCTebloFied8stILrMehUKukeMGkZ1SzTyc8/HFHApzHahNPX6yD8ttzYnhe+IRMFJgpuTlIvEOYZUxenPXE1A5clrPvOBeJDszX/OvZl4fpYWPpXAcVQlw+gfYhblt+rT6ALMsD73w/rT4NRriQEEraC4Pfb5yua4qAqv4TVo04<span class="hljs-tag">&lt;/<span class="hljs-name">authinfo</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">expires_in</span>&gt;</span>7200<span class="hljs-tag">&lt;/<span class="hljs-name">expires_in</span>&gt;</span>
+</code></pre>
+<h2 id="-25"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-25">人脸支付接口</a></h2>
+<p>人脸支付接口已重新调整， 参见 人脸支付接口文档 。</p>
+<h1 id="sdk-android"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#sdk-android">微信人脸SDK - Android</a></h1>
+<p><strong>使用方式：</strong></p>
+<ol>
+<li>安装人脸App。</li>
+<li>商户接入人脸SDK。</li>
+</ol>
+<p><strong>注意点：</strong></p>
+<ol>
+<li>商户使用SDK接口均封装在<code>WxPayFace</code>类中，该类以单例形式存在。调用结果统一由<code>IWxPayfaceCallback</code>回调。</li>
+<li>参数或回调结果以Map形式传递，方便扩展，具体字段名称及返回值定义中。</li>
+</ol>
+<h2 id="initwxpayface"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#initwxpayface">初始化 initWxpayface</a></h2>
+<p><strong>支持版本：</strong>1.0及以上</p>
+<h3 id="-26"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-26">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//IWxPayfaceCallback</span>
+<span class="hljs-comment">//继承自AIDL接口，方便服务商使用。目前仅提一个统一的回调接口。</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IWxPayfaceCallback</span>
+</span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">response</span><span class="hljs-params">(Map info)</span> <span class="hljs-keyword">throws</span> RemoteException</span>;
+}
+
+
+<span class="hljs-comment">//WxPayFace.getInstance().initWxpayface(context,IWxPayfaceCallback);</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initWxpayface</span><span class="hljs-params">(Context ctx, <span class="hljs-keyword">final</span> Map info, IWxPayfaceCallback callback)</span></span>;</code></pre>
+<h3 id="-27"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-27">请求参数</a></h3>
+<p>下方参数的代理设置， 用于配置刷脸走商户内部代理。若不需要，则不用填写。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ip</td>
+<td>否</td>
+<td>string</td>
+<td>HTTP代理IP</td>
+</tr>
+<tr>
+<td>port</td>
+<td>否</td>
+<td>string</td>
+<td>HTTP代理端口, 须为数字</td>
+</tr>
+<tr>
+<td>user</td>
+<td>否</td>
+<td>string</td>
+<td>HTTP代理的用户名</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>否</td>
+<td>string</td>
+<td>HTTP代理的密码</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<pre><code class="language-java">Map&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt; m1 = <span class="hljs-keyword">new</span> HashMap&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt;();
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"ip"</span>, <span class="hljs-string">"192.168.1.1"</span>); <span class="hljs-comment">//若没有代理,则不需要此行</span>
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"port"</span>, <span class="hljs-string">"8888"</span>);<span class="hljs-comment">//若没有代理,则不需要此行</span>
+WxPayFace.getInstance().initWxpayface(ctx, m1, <span class="hljs-keyword">new</span> IWxpayfaceCallback(){
+    <span class="hljs-keyword">void</span> response(Map info){
+
+    }
+})</code></pre>
+<h2 id="reportinfo"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#reportinfo">统计上报 reportInfo</a></h2>
+<p><strong>接口作用：</strong> 实现点击上报，计数上报，耗时上报。
+<strong>支持版本：</strong>1.8及以上</p>
+<h3 id="-28"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-28">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//统计上报</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reportInfo</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Map info, IWxPayfaceCallback callback)</span></span>;</code></pre>
+<h3 id="-29"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-29">请求参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>item</td>
+<td>是</td>
+<td>string</td>
+<td>上报项，具体说明参考表格：<a href="https://docs.qq.com/sheet/BqI21X2yZIht1zL3H34n0aOt15QzTT37rhZ60zQ7Ll0elhv72aP4hv0R4yig3rgYAK4t8pUT1W18nQ3jTeFF4">https://docs.qq.com/sheet/BqI21X2yZIht1zL3H34n0aOt15QzTT37rhZ60zQ7Ll0elhv72aP4hv0R4yig3rgYAK4t8pUT1W18nQ3jTeFF4</a></td>
+</tr>
+<tr>
+<td>item_value</td>
+<td>是</td>
+<td>long</td>
+<td><font color="red">上报项的值，必须为大于０的整数。</font><br><strong>点击上报：</strong>item_value为点击次数，一般为1；<br><strong>计数上报：</strong>item_value为计数值；<br><strong>耗时上报：</strong>item_value为耗时值（单位毫秒）</td>
+</tr>
+</tbody></table>
+<h3 id="-30"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-30">接口返回</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string</td>
+<td>错误码。公共定义见 <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<pre><code class="language-java">IWxPayfaceCallback callback = <span class="hljs-keyword">new</span> <span class="hljs-constructor">IWxPayfaceCallback()</span>{<span class="hljs-operator">
+    ...
+</span>};
+
+<span class="hljs-comment">//点击上报</span>
+Map&lt;String, Object&gt; m1 = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;<span class="hljs-literal">()</span>;
+m1.put(<span class="hljs-string">"item"</span>, <span class="hljs-string">"face.mch.module.something.count"</span>);
+m1.put(<span class="hljs-string">"item_value"</span>, <span class="hljs-number">1</span>);  <span class="hljs-comment">//一次点击</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">WxPayFace</span>.</span></span>get<span class="hljs-constructor">Instance()</span>.report<span class="hljs-constructor">Info(<span class="hljs-params">m1</span>, <span class="hljs-params">callback</span>)</span>;
+
+<span class="hljs-comment">//计数上报</span>
+Map&lt;String, Object&gt; m1 = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;<span class="hljs-literal">()</span>;
+m1.put(<span class="hljs-string">"item"</span>, <span class="hljs-string">"face.mch.module.paylist.count"</span>);
+m1.put(<span class="hljs-string">"item_value"</span>, <span class="hljs-number">23</span>);  <span class="hljs-comment">//数量23件　</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">WxPayFace</span>.</span></span>get<span class="hljs-constructor">Instance()</span>.report<span class="hljs-constructor">Info(<span class="hljs-params">m1</span>, <span class="hljs-params">callback</span>)</span>;
+
+
+<span class="hljs-comment">//耗时上报</span>
+Map&lt;String, Object&gt; m1 = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;<span class="hljs-literal">()</span>;
+m1.put(<span class="hljs-string">"item"</span>, <span class="hljs-string">"face.mch.module.paytime.costtime"</span>);
+m1.put(<span class="hljs-string">"item_value"</span>, <span class="hljs-number">2000</span>);    <span class="hljs-comment">//耗时2秒</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">WxPayFace</span>.</span></span>get<span class="hljs-constructor">Instance()</span>.report<span class="hljs-constructor">Info(<span class="hljs-params">m1</span>, <span class="hljs-params">callback</span>)</span>;</code></pre>
+<h2 id="reportorder"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#reportorder">交易上报 reportOrder</a></h2>
+<p><strong>接口作用：</strong> 自助收银机的所有微信支付的交易，都必须调用此接口上报交易信息
+<strong>支持版本：</strong>1.9及以上</p>
+<h3 id="-31"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-31">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//交易订单上报。</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reportOrder</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Map info, <span class="hljs-keyword">final</span> IWxPayfaceCallback callback)</span></span>;</code></pre>
+<h3 id="-32"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-32">请求参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mch_id</td>
+<td>是</td>
+<td>string</td>
+<td>商户号。（若是服务商模式， 则填服务商商户号）</td>
+</tr>
+<tr>
+<td>sub_mch_id</td>
+<td>否</td>
+<td>string</td>
+<td>子商户号。（服务商模式填写, 其它不填）</td>
+</tr>
+<tr>
+<td>out_trade_no</td>
+<td>是</td>
+<td>string</td>
+<td>商户订单号。</td>
+</tr>
+</tbody></table>
+<h3 id="-33"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-33">接口返回</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string</td>
+<td>错误码。公共定义见 <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<pre><code class="language-java"><span class="hljs-comment">//上报订单</span>
+Map&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt; m1 = <span class="hljs-keyword">new</span> HashMap&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt;();
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"mch_id"</span>, <span class="hljs-string">"180283437"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"out_trade_no"</span>, <span class="hljs-string">"1217752501201407033233368018"</span>);
+WxPayFace.getInstance().reportOrder(m1, <span class="hljs-keyword">new</span> WxpayfaceCallback(){
+    <span class="hljs-keyword">void</span> response(Map info){
+    }
+});</code></pre>
+<h2 id="getwxpayfacerawdata"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#getwxpayfacerawdata">获取数据 getWxpayfaceRawdata</a></h2>
+<p><strong>支持版本：</strong>1.0及以上</p>
+<h3 id="-34"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-34">接口函数</a></h3>
+<pre><code class="language-java">
+<span class="hljs-comment">/*
+    1.获取人脸验证信息。
+        作用：获取到验证信息后，才可调用获取人识别。
+        参数：
+            callback:回调返回人脸验证信息。
+*/</span>
+<span class="hljs-comment">//WxPayFace.getInstance().getWxpayfaceRawdata(IWxPayfaceCallback);</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getWxpayfaceRawdata</span><span class="hljs-params">(<span class="hljs-keyword">final</span> IWxPayfaceCallback callback)</span></span>;</code></pre>
+<h3 id="-35"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-35">返回参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string</td>
+<td>错误码。公共定义见 <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+<tr>
+<td>rawdata</td>
+<td>是</td>
+<td>string(2048)</td>
+<td>初始化数据。用于接口调用, 参见: <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#get_wxpayface_authinfo">get_wxpayface_authinfo: rawdata</a></td>
+</tr>
+</tbody></table>
+<h2 id="getwxpayfacecode"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#getwxpayfacecode">人脸识别 getWxpayfaceCode</a></h2>
+<p><strong>作用：</strong>启动人脸APP主界面入口，开启人脸识别，获取支付凭证或用户信息。
+<strong>支持版本：</strong>1.0及以上</p>
+<h3 id="-36"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-36">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//WxPayFace.getInstance().getWxpayfaceCode(map,IWxPayfaceCallback);</span>
+public void get<span class="hljs-constructor">WxpayfaceCode(<span class="hljs-params">final</span> Map <span class="hljs-params">info</span>, <span class="hljs-params">final</span> IWxPayfaceCallback <span class="hljs-params">wxpayfaceCallBack</span>)</span></code></pre>
+<h3 id="-37"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-37">接口参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appid</td>
+<td>是</td>
+<td>string</td>
+<td>公众号</td>
+</tr>
+<tr>
+<td>mch_id</td>
+<td>是</td>
+<td>string</td>
+<td>商户号</td>
+</tr>
+<tr>
+<td>sub_appid</td>
+<td>是</td>
+<td>string(32)</td>
+<td>子商户公众账号ID(非服务商模式不填)</td>
+</tr>
+<tr>
+<td>sub_mch_id</td>
+<td>是</td>
+<td>string(32)</td>
+<td>子商户号(非服务商模式不填)</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>是</td>
+<td>string</td>
+<td>门店编号</td>
+</tr>
+<tr>
+<td>telephone</td>
+<td>否</td>
+<td>string</td>
+<td>用户手机号。用于传递会员手机，此手机将作为默认值， 填写到手机输入栏。</td>
+</tr>
+<tr>
+<td>out_trade_no</td>
+<td>是</td>
+<td>string</td>
+<td>商户订单号。</td>
+</tr>
+<tr>
+<td>total_fee</td>
+<td>是</td>
+<td>string</td>
+<td>订单金额(数字), 单位分.</td>
+</tr>
+<tr>
+<td>face_authtype</td>
+<td>是</td>
+<td>string</td>
+<td>可选值：<br><code>FACEPAY</code>: 人脸凭证，常用于人脸支付<br><code>FACEPAY_DELAY</code>: 延迟支付(需联系微信支付开通权限)</td>
+</tr>
+<tr>
+<td>authinfo</td>
+<td>是</td>
+<td>string</td>
+<td>调用凭证。获取方式参见: <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E6%8E%A5%E5%8F%A3%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C">get_wxpayface_authinfo</a></td>
+</tr>
+<tr>
+<td>ask_face_permit</td>
+<td>是</td>
+<td>string</td>
+<td>支付成功页是否需要展示人脸识别授权项。展示：1。不展示：0。人脸识别授权项：用户授权后用于1:N识别，可返回用户信息openid，建议商户有自己会员系统时，填1。</td>
+</tr>
+<tr>
+<td>ask_ret_page</td>
+<td>否</td>
+<td>string</td>
+<td>是否展示微信支付成功页，可选值："0"，不展示；"1"，展示</td>
+</tr>
+</tbody></table>
+<h4 id="face_authtype"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#face_authtype"><code>face_authtype</code>取值介绍</a></h4>
+<p><strong>FACEPAY：</strong></p>
+<p>用于获取人脸凭证(face_code)，通常需要用户输入手机号以及人脸，目前主要用于<strong>人脸支付</strong>。</p>
+<p><strong>FACEPAY_DELAY：</strong></p>
+<p>用于获取人脸凭证(face_code)，应用在延迟支付场景，获取face_code后，会立即关闭微信刷脸支付app界面，需联系微信支付开通权限。</p>
+<h3 id="-38"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-38">接口返回</a></h3>
+<p>返回结果<code>IWxPayfaceCallback.response(Map info)</code></p>
+<ol>
+<li>当<code>face_authtype</code>为<code>FACEPAY</code>时, 接口返回：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string</td>
+<td>错误码。公共定义见 <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+<tr>
+<td>face_code</td>
+<td>S</td>
+<td>string</td>
+<td>人脸凭证, 用于刷脸支付。</td>
+</tr>
+<tr>
+<td>openid</td>
+<td>S</td>
+<td>string</td>
+<td>openid</td>
+</tr>
+<tr>
+<td>sub_openid</td>
+<td>否</td>
+<td>string</td>
+<td>子商户号下的openid(服务商模式)</td>
+</tr>
+<tr>
+<td>telephone_used</td>
+<td>否</td>
+<td>int</td>
+<td>获取的<code>face_code</code>，是否使用了请求参数中的<code>telephone</code>。<br>可取值：<br>0：表示没有使用<code>telephone</code>；<br>1： 表示使用了<code>telephone</code>；<br></td>
+</tr>
+<tr>
+<td>underage_state</td>
+<td>否</td>
+<td>int</td>
+<td>用户年年龄信息，使⽤用需要联系微信⽀支付开通权限 <br>可取值:  <br>0:状态不明确，或权限未开通;  <br>1: 成年年人; <br>2: 未成年人</td>
+</tr>
+</tbody></table>
+<h3 id="-39"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-39">接口错误码</a></h3>
+<p>错误码的公共部分， 参见<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a>。以下为该接口独有错误码：</p>
+<table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>描述</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>USER_CANCEL</td>
+<td>用户退出了人脸识别</td>
+<td>返回到结账流程</td>
+</tr>
+<tr>
+<td>SCAN_PAYMENT</td>
+<td>用户选择扫码支付</td>
+<td>进入扫码支付流程</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<pre><code class="language-java">Map&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt; m1 = <span class="hljs-keyword">new</span> HashMap&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt;();
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"face_authtype"</span>, <span class="hljs-string">"FACEPAY"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"appid"</span>, <span class="hljs-string">"wxxxxxxxxx"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"mch_id"</span>, <span class="hljs-string">"3414783174"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"store_id"</span>, <span class="hljs-string">"IMG001"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"out_trade_no"</span>, <span class="hljs-string">"XXXXXXXXXXXXXXX"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"total_fee"</span>, <span class="hljs-string">"8100"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"authinfo"</span>, <span class="hljs-string">"xxxxxxxxxxxxxx"</span>);
+WxPayFace.getInstance().getWxpayfaceCode(m1, <span class="hljs-keyword">new</span> WxpayfaceCallback(){
+    <span class="hljs-keyword">void</span> response(Map info){
+
+    }
+})</code></pre>
+<h2 id="getwxpayfaceuserinfo"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#getwxpayfaceuserinfo">获取用户信息 getWxpayfaceUserInfo</a></h2>
+<p><strong>作用：</strong>通过人脸识别获取用户信息。
+<strong>支持版本：</strong>1.13及以上</p>
+<p>该接口与[人脸识别 getWxpayfaceCode](#人脸识别 getWxpayfaceCode)的区别：</p>
+<ol>
+<li>不需要输入手机号；</li>
+<li>无法用于订单支付；</li>
+<li>UI交互不同。</li>
+</ol>
+<p><strong>适用范围：</strong></p>
+<p>适用于会员、推荐等场景。</p>
+<h3 id="-40"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-40">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//WxPayFace.getInstance().getWxpayfaceUserInfo(map,IWxPayfaceCallback);</span>
+public void get<span class="hljs-constructor">WxpayfaceUserInfo(<span class="hljs-params">final</span> Map <span class="hljs-params">info</span>, <span class="hljs-params">final</span> IWxPayfaceCallback <span class="hljs-params">wxpayfaceCallBack</span>)</span></code></pre>
+<h3 id="-41"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-41">接口参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appid</td>
+<td>是</td>
+<td>string</td>
+<td>公众号</td>
+</tr>
+<tr>
+<td>mch_id</td>
+<td>是</td>
+<td>string</td>
+<td>商户号</td>
+</tr>
+<tr>
+<td>sub_appid</td>
+<td>是</td>
+<td>string(32)</td>
+<td>子商户公众账号ID(非服务商模式不填)</td>
+</tr>
+<tr>
+<td>sub_mch_id</td>
+<td>是</td>
+<td>string(32)</td>
+<td>子商户号(非服务商模式不填)</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>是</td>
+<td>string</td>
+<td>门店编号</td>
+</tr>
+<tr>
+<td>face_authtype</td>
+<td>是</td>
+<td>string</td>
+<td>人脸识别模式。可选值：<br><code>FACEID-ONCE</code>: 人脸识别(单次模式)<br><code>FACEID-LOOP</code>: 人脸识别(循环模式)</td>
+</tr>
+<tr>
+<td>authinfo</td>
+<td>是</td>
+<td>string</td>
+<td>调用凭证。获取方式参见: <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E6%8E%A5%E5%8F%A3%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C">get_wxpayface_authinfo</a></td>
+</tr>
+<tr>
+<td>auth_mode</td>
+<td>否</td>
+<td>string</td>
+<td>未授权用户是否跳转授权页面。可选值[0:不跳转授权页面;1:跳转授权页面]</td>
+</tr>
+</tbody></table>
+<h4 id="face_authtype-1"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#face_authtype-1"><code>face_authtype</code>取值介绍</a></h4>
+<p><strong>FACEID-ONCE/FACEID-LOOP：</strong></p>
+<p>用于获取用户信息（openid, 昵称等），通常只需要用户人脸，不需要输入手机号。</p>
+<p><strong>ONCE与LOOP的区别：</strong></p>
+<ul>
+<li>ONCE只会识别一次。
+即调用本接口后， 如果在指定时间内（比如５秒）没有识别出来，则会返回识别失败。</li>
+</ul>
+<p>*　LOOP会持续识别人脸， 直到识别成功为止。（或者调用停止接口）</p>
+<h3 id="-42"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-42">接口返回</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string</td>
+<td>错误码。公共定义见 <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+<tr>
+<td>openid</td>
+<td>S</td>
+<td>string</td>
+<td>openid</td>
+</tr>
+<tr>
+<td>sub_openid</td>
+<td>否</td>
+<td>string</td>
+<td>子商户号下的openid(服务商模式)</td>
+</tr>
+<tr>
+<td>nickname</td>
+<td>S</td>
+<td>string</td>
+<td>微信昵称</td>
+</tr>
+</tbody></table>
+<h3 id="-43"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-43">接口错误码</a></h3>
+<p>错误码的公共部分， 参见<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a>。以下为该接口独有错误码：</p>
+<table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>描述</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FACE_UNKNOWN</td>
+<td>无法识别出用户</td>
+<td>—</td>
+</tr>
+<tr>
+<td>USER_CANCEL</td>
+<td>用户退出人脸识别</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<pre><code class="language-java">Map&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt; m1 = <span class="hljs-keyword">new</span> HashMap&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt;();
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"appid"</span>, <span class="hljs-string">"wxxxxxxxxx"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"mch_id"</span>, <span class="hljs-string">"3414783174"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"store_id"</span>, <span class="hljs-string">"IMG001"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"face_authtype"</span>, <span class="hljs-string">"FACEID-ONCE"</span>);
+m1.<span class="hljs-built_in">put</span>(<span class="hljs-string">"authinfo"</span>, <span class="hljs-string">"xxxxxxxxxxxxxx"</span>);
+WxPayFace.getInstance().getWxpayfaceUserInfo(m1, <span class="hljs-keyword">new</span> WxpayfaceCallback(){
+    <span class="hljs-keyword">void</span> response(Map info){
+
+    }
+})</code></pre>
+<h2 id="stopwxpayface"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#stopwxpayface">停止识别 stopWxpayface</a></h2>
+<p><strong>作用：</strong> 用于停止[获取用户信息 getWxpayfaceUserInfo](#获取用户信息 getWxpayfaceUserInfo)发起的人脸识别，以及隐藏所有的人脸标识展示。</p>
+<p><strong>支持版本：</strong>1.13及以上</p>
+<h3 id="-44"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-44">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//WxPayFace.getInstance().stopWxpayface(map,IWxPayfaceCallback);</span>
+public void stop<span class="hljs-constructor">Wxpayface(<span class="hljs-params">final</span> Map <span class="hljs-params">info</span>, <span class="hljs-params">final</span> IWxPayfaceCallback <span class="hljs-params">wxpayfaceCallBack</span>)</span></code></pre>
+<h3 id="-45"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-45">接口参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>authinfo</td>
+<td>是</td>
+<td>string</td>
+<td>调用凭证。获取方式参见: <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E6%8E%A5%E5%8F%A3%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C">get_wxpayface_authinfo</a></td>
+</tr>
+</tbody></table>
+<h3 id="-46"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-46">接口返回</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string</td>
+<td>错误码。公共定义见 <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+</tbody></table>
+<h2 id="updatewxpayfacepayresult"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#updatewxpayfacepayresult">支付结果 updateWxpayfacePayResult</a></h2>
+<p><strong>作用：</strong> 更新支付结果，用户确认支付结果后返回wxpayfaceCallBack，刷脸支付界面关闭。
+<strong>支持版本：</strong>1.0及以上 
+<strong>注意：</strong> 从1.14.296开始，回调时机改为刷脸支付界面关闭后触发回调。</p>
+<h3 id="-47"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-47">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//WxPayFace.getInstance().updateWxpayfacePayResult(map,IWxPayfaceCallback);</span>
+public void update<span class="hljs-constructor">WxpayfacePayResult(<span class="hljs-params">final</span> Map <span class="hljs-params">info</span>, <span class="hljs-params">final</span> IWxPayfaceCallback <span class="hljs-params">wxpayfaceCallBack</span>)</span></code></pre>
+<h3 id="-48"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-48">接口参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appid</td>
+<td>是</td>
+<td>string</td>
+<td>公众号</td>
+</tr>
+<tr>
+<td>mch_id</td>
+<td>是</td>
+<td>string</td>
+<td>商户号</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>是</td>
+<td>string</td>
+<td>门店编号</td>
+</tr>
+<tr>
+<td>authinfo</td>
+<td>是</td>
+<td>string</td>
+<td>调用凭证。获取方式参见: <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E6%8E%A5%E5%8F%A3%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C">get_wxpayface_authinfo</a></td>
+</tr>
+<tr>
+<td>payresult</td>
+<td>是</td>
+<td>string</td>
+<td>支付结果。可取值：<br><code>SUCCESS</code>: 支付成功<br><code>ERROR</code>: 支付失败</td>
+</tr>
+</tbody></table>
+<h3 id="-49"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-49">接口返回</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>return_code</td>
+<td>是</td>
+<td>string</td>
+<td>错误码。公共定义见 <a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#%E5%85%AC%E5%85%B1%E9%94%99%E8%AF%AF%E7%A0%81">公共错误码</a></td>
+</tr>
+<tr>
+<td>return_msg</td>
+<td>是</td>
+<td>string(128)</td>
+<td>对错误码的描述</td>
+</tr>
+</tbody></table>
+<h2 id="updatewxpayfacebannerstate"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#updatewxpayfacebannerstate">运营位控制接口 updateWxpayfaceBannerState</a></h2>
+<p><strong>作用：</strong> 设置微信支付运营图片状态，默认可展示，可修改为(可展示/不可展示)两种状态
+<strong>支持版本：</strong> 1.16及以上</p>
+<h3 id="-50"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-50">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//WxPayFace.getInstance().updateWxpayfaceBannerState(map,IWxPayfaceCallback);</span>
+public void update<span class="hljs-constructor">WxpayfaceBannerState(<span class="hljs-params">final</span> Map <span class="hljs-params">bean</span>, <span class="hljs-params">final</span> IWxPayFaceCallbackAIDL <span class="hljs-params">wxpayfaceCallBack</span>)</span></code></pre>
+<h3 id="-51"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-51">接口参数</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>banner_state</td>
+<td>是</td>
+<td>int</td>
+<td>设置运营位状态 0:可展示运营图片;1不可展示运营图片</td>
+</tr>
+</tbody></table>
+<h2 id="releasewxpayface"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#releasewxpayface">释放资源 releaseWxpayface</a></h2>
+<p><strong>作用：</strong> 释放人脸服务，断开连接。
+<strong>支持版本：</strong> 1.0及以上</p>
+<h3 id="-52"><a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop-sdk_android.html#-52">接口函数</a></h3>
+<pre><code class="language-java"><span class="hljs-comment">//WxPayFace.getInstance().releaseWxpayface();</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> releaseWxpayface()</code></pre>
+
+        </div>
+        <div class="footer"><div class="line"></div>
+<div><a href="http://kf.qq.com/faq/170117mABNnU170117uEFBVN.html">关于财付通</a> | <a href="https://pay.weixin.qq.com/index.php/core/home/pay_pact_v4">平台使用协议</a> | <a href="https://pay.weixin.qq.com/index.php/public/apply_sign/protocol_v2">支付服务协议</a> | Powered By Tencent &amp;
+    Tenpay　Copyright © 2005-2019 All Rights Reserved
+</div></div>
+    </div>
+</div>
+<script type="text/javascript" src="./人脸识别接口文档Android_files/document.68d536d21b2acd37.js.下载"></script>
+
+<div class="mermaidTooltip" style="opacity: 0;"></div></body></html>

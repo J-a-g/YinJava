@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.jdbc.log.Log;
 import com.yin.xiao.SysConfig;
 import com.yin.xiao.bean.Response;
 import com.yin.xiao.control.AdminControl;
@@ -22,7 +23,7 @@ public class WebLogin extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		System.out.println("JAG doGet...");
 	}
 
 	@Override
@@ -36,6 +37,7 @@ public class WebLogin extends HttpServlet {
 
 		String username = req.getParameter("username");// 接受用户的参数
 		String password = req.getParameter("password");
+		System.out.println("username---> " + username + " password --> " + password);
 		JSONObject userJson;
 		if (adminControl.login(username, password)) {
 			userJson = JSONObject.fromObject(new Response(SysConfig.SUC_CODE, "验证成功", "", "WebLogin"));
